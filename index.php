@@ -1,135 +1,76 @@
 <?php
 
-//switch
+$school ="Digital school";
 
-$age=20;
+echo "I love $school" . "<br>";
 
-switch($age) {
-    case ($age >=0 && $age < 18):
-        echo "You are a minor (0-18 years old)" . "<br>";
-        break;
-        case($age >=0 && $age <=25):
-        echo "You are an young adult (0-25 years old)" .  "<br>";
-        break;
-        case($age > 25):
-        echo"You are a adult" . "<br>";
-        break;
-        default:
-        echo "invalid age" . "<br>";
-        break;
+//simple arithemtic's
+$x = 120;
+$y=50;
+
+echo $x + $y . "<br>";
+echo $x - $y . "<br>";
+
+echo $x / $y . "<br>";
+echo $x * $y .  "<br>";
 
 
+ECHO $x % $y . "<br>" ;
 
+
+//concatenation
+
+$a="Digital";
+$b= "School";
+
+$c= $a.$b;
+
+echo $c . "<br>" ;
+
+//String functions
+
+$the_string= "Digital School";
+
+echo strlen($the_string) . "<br>";
+
+$programing = "Programing is not cool";
+echo str_replace("not", "very",$programing) . "<br>";
+
+$the_string="Programming";
+echo strrev($the_string) ."<br>";
+
+//Conditonals
+$num = -1;
+
+if($num < 0 ) {
+    echo "$num is less than 0" . "<br>";
+}
+$age=18;
+if(($age >12) && ($age <20)){
+    echo "You are a teenager" . "<br>";
 }
 
-$day = "Tuesday";
-
-switch($day) {
-
-    case"Monday":
-        echo "its monday";
-        break;
-
-        case"Tuesday":
-            echo "OMG Tuesday";
-            break;
-
-            case"Wednsday":
-                echo "ohno wednesday";
-                break;
-
-                case"thursday":
-                    echo "OHYE thursday";
-                    break;
-
-                    case"friday":
-                        echo "COMON Friday";
-                        break;
-
-                        case"saturday":
-                            echo "ohpapa saturday";
-                            break;
-
-                            case"sunday":
-                                echo "OHNO sunday";
-                                break;
-
-                                default:
-                                echo"Invalid day" . ">br>";
-
-    
-
+if($age < 18){
+    echo"you are under 18";
+}else {
+    echo "you are an adult" . "<br>";
 }
 
-
-
-//loops 
-
-$x =1;
-
-while( $x <=5) {
-    echo "the number is :$x" . "<br>";
-
-    $x++;
+if($num <0){
+    echo "the value of $num is a negative number" . "<br>";
+}elseif($num==0){
+    echo "the vale of $num is 0" . "<br>";
+}else {
+    echo "the value of $num is a postivie number" . "<br>";
 }
 
-$y = 1;
+$num1 = 1;
+$num2 = 2;
 
-do{
-    echo "the number is : $y." . "<br>";
-    $y++;
-
-}while( $y  <=6);
-
-for($x=0; $x < 10; $x++){
-
-echo "Shkolla digjitale " . "<br>";
-
+if($num1 == $num2){
+    echo"PO MORE";
+}else{
+    echo"JA MO QFART";
 }
-
-$cars = array ("BMW","VW", "Audi", "Porsche");
-
-foreach($cars as $value) {
-
-    echo"$value" , "<br>";
-}
-
-$age = array ("John" => "18" , "istreti" => "25", "Naimi" => "10");
-
-
-foreach($age as $key => $value) {
-    echo "$key = $value" . "<br>";
-}
-
-
-// build in functions
-
-
-
-$y ="Hellooo";
-
-print_r ($y) ;
-
-$x=2;
-echo gettype($x) . "<br>";
-
-$x=2.3;
-echo gettype($x) . "<br>";
-
-$x="shkolla";
-echo gettype($x) . "<br>";
-
-
-function displayPhpVersion (){
-    
-    echo "this is php" . phpversion() . "<br>";
-}
-
-displayPhpVersion();
-
-//user defin version
-
-
-
 
 ?>
