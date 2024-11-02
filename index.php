@@ -1,76 +1,134 @@
 <?php
+//user defined functions
 
-$school ="Digital school";
+// function maximum($x,$y){
 
-echo "I love $school" . "<br>";
+//     if($x > $y) {
+//         return $x;
+        
+//     }else {
+//         return $y;
+//     }
 
-//simple arithemtic's
-$x = 120;
-$y=50;
+// }
 
-echo $x + $y . "<br>";
-echo $x - $y . "<br>";
+// $a=20;
+// $b=30;
 
-echo $x / $y . "<br>";
-echo $x * $y .  "<br>";
+// $test = maximum($a,$b);
+// echo "the max of $a and $b is $test" . "<br>"; -->
+
+function fully_divisible($n){
+
+  if($n % 2 ==0 ) {
+    return "$n is fully divisivble by 2" ;    
+   } else {
+   return "$n is not fully divisivble by 2";
 
 
-ECHO $x % $y . "<br>" ;
+}}
+
+print_r(fully_divisible(10));
+
+//variable scope
 
 
-//concatenation
+$x=5;
 
-$a="Digital";
-$b= "School";
+function localVariable() {
+    global $x;
+    $y=10;
+     echo $x . "<br>";
+    echo $y . "<br>";
 
-$c= $a.$b;
 
-echo $c . "<br>" ;
-
-//String functions
-
-$the_string= "Digital School";
-
-echo strlen($the_string) . "<br>";
-
-$programing = "Programing is not cool";
-echo str_replace("not", "very",$programing) . "<br>";
-
-$the_string="Programming";
-echo strrev($the_string) ."<br>";
-
-//Conditonals
-$num = -1;
-
-if($num < 0 ) {
-    echo "$num is less than 0" . "<br>";
-}
-$age=18;
-if(($age >12) && ($age <20)){
-    echo "You are a teenager" . "<br>";
 }
 
-if($age < 18){
-    echo"you are under 18";
-}else {
-    echo "you are an adult" . "<br>";
+localVariable();
+
+//static
+
+function add1(){
+    static $number=0;
+    $number++;//1
+    return $number;//1
+
 }
 
-if($num <0){
-    echo "the value of $num is a negative number" . "<br>";
-}elseif($num==0){
-    echo "the vale of $num is 0" . "<br>";
-}else {
-    echo "the value of $num is a postivie number" . "<br>";
+echo add1();//1
+echo "<br>";
+echo add1();//2
+echo "<br>";
+echo add1();//3
+
+//arrays
+
+$sport1 = "football";
+$sport2 = "basketball";
+$sport3 = "voleyball";
+$sport4 = "cricket";
+
+//$sports = array("football","basketball","voleyball","cricket");
+
+$sports = ["football","basketball","voleyball","cricket"];
+
+echo "<br>";
+echo $sports[0];
+echo "<br>";
+echo $sports[2];
+echo "<br>";
+echo end($sports);//the last item
+echo "<br>";
+echo count($sports); //return the number of elements as an integer value
+echo "<br>";
+
+$len = count($sports);
+for($i=0; $i < 4; $i++) {
+    echo $sports[$i] , "\n";
 }
 
-$num1 = 1;
-$num2 = 2;
+array_push($sports, "Golf");//add  an item at the end of an array
 
-if($num1 == $num2){
-    echo"PO MORE";
-}else{
-    echo"JA MO QFART";
-}
+var_dump($sports);
+array_pop($sports);//removes an item at the end of an array
+
+array_unshift($sports, "Tennis"); //add an item to the  beggining of an array
+
+array_shift($sports);
+var_dump($sports);
+echo "<br";
+
+$output = array_slice($sports, 2);
+var_dump($output);
+echo "<br>";
+
+$sports = ["football","basketball","voleyball","cricket"];
+
+$output = array_slice($sports,0, 3);
+var_dump($output);
+echo"<br>";
+
+$sports = ["football","basketball","voleyball","cricket"];
+
+$output = array_slice($sports,-2, 1);
+var_dump($output);
+echo"<br>";
+
+
+//array_sum
+
+$values =[12,24,30,55];
+
+$sum = array_sum($values);
+var_dump($sum);
+
+$week =[32,24,37,40,28,36,34];
+
+$avreage = array_sum($week)/7;
+
+echo($avreage);
+
+
+
 
 ?>
