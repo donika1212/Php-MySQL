@@ -1,132 +1,120 @@
+
+<table border="1">
+    <tr>
+      <th>phones</th>
+      <th>in stock</th>
+      <th>sold</th>
+    </tr>
+
+<style>
+   table {
+    width:50%:
+    border-collapse:collapse;
+   }
+
+   th, td {
+    padding:30px;
+    text-align:left;
+    border:3px solid red:
+   }
+
+   th{
+    background-color:gray;
+    font-wight:bold;
+   }
+
+</style>
+
+
 <?php
+$dogs = array(
+    array("chihuahua", "mexico",20),  
+    array("husky", "siberia",15),
+    array("bulldog", "england",10),
 
-//Switch
+);
 
-$age=15;
+echo $dogs[0][0] . ":Origin" . $dogs[0][1] . ",Life span:" .$dogs[0][2] . "<br>";
+echo $dogs[1][0] . ":Origin" . $dogs[1][1] . ",Life span:" .$dogs[1][2] . "<br>";
+echo $dogs[2][0] . ":Origin" . $dogs[2][1] . ",Life span:" .$dogs[2][2] . "<br>";
 
-switch($age) {
-
-    case ($age >=0 && $age <18):
-    echo "you are a minor (0-18 years old)" . "<br>";
-    break;
-    case ($age >=18 && $age <=25):
-        echo "you are a young adult" . "<br>";
-        break;
-    case($age > 25):
-        echo "you are an adult" . "<br>";
-        break;
-        default:
-        echo "invalid age" . "<br>";
-        break;
-
-
-
-}
-
-$day = "tuesday";
-
-switch($day) {
-
-    case "monday";
-    echo "its monday" . "<br>";
-    break;
-
-    case "tuesday";
-    echo "its tuesday" . "<br>";
-    break;
+for($row=0;$row<3;$row++) {
+        echo "<p><b> Row number $row </b></p>";
+        echo "<ul>";
+        for($col=0;$col<3;$col++) {
+            echo "<li>" . $dogs[$row][$col] . "</li>";
+        }
+        echo "</ul>";
+    }
 
 
-    case "wednesday";
-    echo "its wednesday" . "<br>";
-    break;
 
 
-    case "thursday";
-    echo "its thursday" . "<br>";
-    break;
-
-
-    case "friday";
-    echo "its friday" . "<br>";
-    break;
-
-    case "saterday";
-    echo "its saterday" . "<br>";
-    break;
-
-    case "sunday";
-    echo "its sunday" . "<br>";
-    break;
-
-    default:
-    echo "invalid day" . "<br>";
-    break;
-
-
-    //loops (unazat)
-
-
-}
-
-$x =1;
-
-while( $x <= 5) {
-    echo "the number is : $x" . "<br>";
     
-    $x++;
+$phones= array(
+        array("iphone 14", "20",10),  
+        array("iphone 13", "20",20),
+        array("iphone 12", "20",25),
+        array("iphone 11", "25",40),
+    
+    );
 
+ for($row=0;$row<4;$row++) {
+
+    echo "<tr>";
+
+    for($col=0;$col<3;$col++) {
+
+        echo "<td>" .$phones[$row][$col] ."</td>";
+
+    }
+
+    echo "</tr>";
+
+    
+ }
+ echo "</table>";
+
+ //nested loops
+
+ $arrays=array(
+    array(1,2,3),
+    array(1,2,3),
+    array(1,2,3),
+ );
+
+ for($i=0; $i<3; $i++){
+
+    for($j=0; $j<3; $j++){
+        echo "array: $i element: $j . <br>";
+    }
+
+ }
+
+
+for($i=0; $i<4; $i++) {
+
+    for($j=0; $j<=$i; $j++) {
+        echo "*";
+    }
+    echo "<br>";
 }
 
-$y = 1;
+//associative arrays
 
-do{
-    echo "the number is : $y." . "<br>";
-    $y++;
-}while( $y <=6);
+$grade= array(
+    "math" =>"1",   
+    "art" =>"5",
+    "histori" =>"3",
+    "muzik" =>"4",
+);
 
 
-for ($x=0; $x < 10; $x++) {
-    echo "shkolla digjitale" . "<br>";
+echo "math grade is" .$grade["math"] . "<br>";
+
+foreach($grade as $subject => $grade) {
+    echo "subject :" .$subject . "grade :" .$grade;
+    echo "<br>";
 }
-
-$cars = array ("BMW","VW","AUDI","TESLA");
-
-foreach($cars as $value) {
-    echo "$value" . "<br>";
-}
-
-$age = array("john" => "18","michael" => "23","joe" => "10");
-
-foreach($age as $key => $value) {
-    echo "$key = $value" . "<br>";
-}
-
-//built in-functions
-
-phpinfo();
-
-$y="hello" . "<br>";
-
-print_r($y);
-
-$x=2;
-echo gettype($x) . "<br>";
-
-$x=2.3;
-echo gettype($x) . "<br>";
-
-$x="shkolla";
-echo gettype($x) . "<br>";
-
-function displayphpversion (){
-    echo "this is php:" . phpversion() . "<br>";
-}
-
-displayphpversion();
-
-//user defined functions
-
-
-
 
 ?>
