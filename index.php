@@ -1,134 +1,134 @@
+
+<table border="1">
+<tr> 
+    <th> Phones </th>
+    <th> In stock </th>
+    <th> Sold </th>
+
+</tr>
+
+<style>
+
+table {
+    width:50%;
+    border-collapse:collapse;
+
+}
+
+th, td {
+    padding:30px;
+    text-align:left;
+    border: 3px solid red;
+}
+
+th {
+    background-color: gray;
+    font-weight: bold;
+}
+
+</style>
+
 <?php
-//user defined functions
+//MULTIDEMESIONAL ARRAY
 
-// function maximum($x,$y){
+$dogs = array(
+    array("chihuahua","mexico", 20), 
+    array("Husky","Siberia", 15),
+    array("golden retriever","America", 10),
+    array("bulldog","england", 40),
+    
+    );
+    
+    
+    echo $dogs[0][0] . ":Origin:" . $dogs[0][1] . ",Life Span" . $dogs[0][2] . "<br>";
+    echo $dogs[1][0] . ":Origin:" . $dogs[1][1] . ",Life Span" . $dogs[1][2] . "<br>";
+    echo $dogs[2][0] . ":Origin:" . $dogs[2][1] . ",Life Span" . $dogs[2][2] . "<br>";
+    echo $dogs[3][0] . ":Origin:" . $dogs[3][1] . ",Life Span" . $dogs[3][2] . "<br>";
+    
+    for($row=0;$row<3;$row++) {
+        echo "<p><b> Row number $row </b></p>";
+        echo"<ul>";
+        for($col=0;$col<3;$col++) {
+            echo "<li>" . $dogs[$row][$col] . "</li>";
+    
+    
+        }
+        echo "</ul>";
+    
+    }
 
-//     if($x > $y) {
-//         return $x;
-        
-//     }else {
-//         return $y;
-//     }
+$phones= array(
+    array("iphone 14",10, 20), 
+    array("iphone 13",9, 15),
+    array("iphone 12",10, 10),
+    array("iphone 11",4, 10),
+    
+    
+);
 
-// }
+for($row=0;$row<4;$row++) {
 
-// $a=20;
-// $b=30;
+        echo "<tr>";
 
-// $test = maximum($a,$b);
-// echo "the max of $a and $b is $test" . "<br>"; -->
+    for($row=0;$col<3;$col++) {
 
-function fully_divisible($n){
+            echo "<td>" .$phones[$row][$col] ."</td>";
+        }
 
-  if($n % 2 ==0 ) {
-    return "$n is fully divisivble by 2" ;    
-   } else {
-   return "$n is not fully divisivble by 2";
+        echo "</tr>";
 
 
-}}
+    }
 
-print_r(fully_divisible(10));
-
-//variable scope
+    echo "</table>";
 
 
-$x=5;
+ $arrays = array(
+    array(1,2,3),
+    array(1,2,3),
+    array(1,2,3),
+ );
 
-function localVariable() {
-    global $x;
-    $y=10;
-     echo $x . "<br>";
-    echo $y . "<br>";
+ for($i=0; $i<3; $i++){
+    for($j=0; $j<3; $j++){
+        echo "Array: $i Element: $j . <br> ";
+     }
+ }
 
 
+ for ($i=0 ; $i <4; $i++) {
+
+    for($j=0; $j<=$i; $j++){
+        echo"*";
+    }
+
+    echo"<br>";
+ }
+
+ //associative arrays
+
+ 
+$grade= array(
+    "Math" => "1",   
+    "Art" => "5",
+    "History" => "3",
+    "Music" => "4";
+
+);
+
+echo "math grade is ".$grade["Math"];
+
+
+foreach($grade as $subject => $grade) {
+
+    echo "subject :" .$subject . ", Grade :" .$grade; 
+    echo "<br>";
 }
 
-localVariable();
-
-//static
-
-function add1(){
-    static $number=0;
-    $number++;//1
-    return $number;//1
-
-}
-
-echo add1();//1
-echo "<br>";
-echo add1();//2
-echo "<br>";
-echo add1();//3
-
-//arrays
-
-$sport1 = "football";
-$sport2 = "basketball";
-$sport3 = "voleyball";
-$sport4 = "cricket";
-
-//$sports = array("football","basketball","voleyball","cricket");
-
-$sports = ["football","basketball","voleyball","cricket"];
-
-echo "<br>";
-echo $sports[0];
-echo "<br>";
-echo $sports[2];
-echo "<br>";
-echo end($sports);//the last item
-echo "<br>";
-echo count($sports); //return the number of elements as an integer value
-echo "<br>";
-
-$len = count($sports);
-for($i=0; $i < 4; $i++) {
-    echo $sports[$i] , "\n";
-}
-
-array_push($sports, "Golf");//add  an item at the end of an array
-
-var_dump($sports);
-array_pop($sports);//removes an item at the end of an array
-
-array_unshift($sports, "Tennis"); //add an item to the  beggining of an array
-
-array_shift($sports);
-var_dump($sports);
-echo "<br";
-
-$output = array_slice($sports, 2);
-var_dump($output);
-echo "<br>";
-
-$sports = ["football","basketball","voleyball","cricket"];
-
-$output = array_slice($sports,0, 3);
-var_dump($output);
-echo"<br>";
-
-$sports = ["football","basketball","voleyball","cricket"];
-
-$output = array_slice($sports,-2, 1);
-var_dump($output);
-echo"<br>";
-
-
-//array_sum
-
-$values =[12,24,30,55];
-
-$sum = array_sum($values);
-var_dump($sum);
-
-$week =[32,24,37,40,28,36,34];
-
-$avreage = array_sum($week)/7;
-
-echo($avreage);
 
 
 
+
+    
 
 ?>
