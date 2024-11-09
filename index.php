@@ -1,138 +1,118 @@
-<?php
+<table border="1">
+    <tr>
+        <th> Phones </th>
+        <th> In stock </th>
+        <th> Sold </th>
+    </tr>
 
-//user defined functions
-
-function maximum($x,$y){
-
-    if ($x > $y) {
-        return $x;
-    }else {
-        return $y;
+<style>
+    table {
+        width: 50%;
+        border-collapse: collapse;
     }
 
+    th, td {
+        padding: 30px;
+        text-align:left;
+        border: 3px solid red;
+    }
+
+    th {
+        backround-color: blue;
+        font-weight: bold;
+    }
+
+</style>
+
+<?php
+
+//Multidimemsional arrays
+
+$dogs = array(
+    array("Chihuahua", "Mexico",20), 
+    array("Husky","Siberia", 15),
+    array("Bulldog","England",10),
+
+);
+
+echo $dogs[0][0]. ": Origin: " . $dogs[0][1] . ", Lifespan: " .$dogs[0][2] . "<br>";
+echo $dogs[1][0]. ": Origin: " . $dogs[1][1] . ", Lifespan: " .$dogs[1][2] . "<br>";
+echo $dogs[2][0]. ": Origin: " . $dogs[2][1] . ", Lifespan: " .$dogs[2][2] . "<br>";
+
+for($row=0;$row<3;$row++) {
+     echo "<p><b> Row number $row </b></p>";
+     echo "<ul>";
+    for($col=0;$col<3;$col++) {
+       echo "<li>" . $dogs[$row][$col] . "</li>";
+
+    }
+   echo "</ul>";
 }
 
-$a=20;
-$b=30;
-
-$test = maximum($a,$b);
-echo "The max of $a and $b is $test" ."<br>";
-
-function fully_divisible($n){
-    if($n % 2 ==0) {
-        return "$n is fully divisible by 2";
-    }else
-    return "$n is not fully divisible by 2"; 
-    
-}
-
-//print_r(fully_divisible(4)) ."<br>";
 
 
-//Variable Scope
-//global
-//local
-//static
 
-$x=5; //global
+$phones = array(
+    array("Iphone 14",20,10), 
+    array("Iphone 13",20,20),
+    array("Iphone 12",20,25),
+    array("Iphone 11",25,40),
 
-function localVariable(){
-    global $x;
-    $y=10; //local
-    echo $x ."<br>";
-    echo $y ."<br>";
-}
+);
 
-localVariable();
+for($row=0;$row<4;$row++) {
 
-//static
+    echo "<tr>";
 
-function add1(){
-    static $number=0;
-    $number++; //1
-    return $number; //1
+    for($col=0;$col<3;$col++) {
+
+        echo "<td>" .$phones[$row][$col] ."</td>";
 
 }
 
-echo add1(); //1
-echo "<br>";
-echo add1(); //2
-echo "<br>";
-echo add1(); //3
+echo"</tr>";
 
-//arrays
-
-$sport1="Football";
-$sport2="Basketball";
-$sport="Volleyball";
-$sport4="Handball";
-
-//$sport = array("Football","Basketball","Volleyball","Handball");
-
-$sports = ["Football","Basketball","Volleyball","Handball"];
-
-echo"<br>";
-echo $sports[0];
-echo"<br>";
-echo $sports[2];
-echo"<br>";
-echo end($sports);// the last item
-echo"<br>";
-echo count($sports); //retunrs the number of elements as an integer number
-echo"<br>";
-
-
-$len = count($sports);
-for ($i=0; $i < $len; $i++) {
-    echo $sports[$i] , "\n";
 }
-echo "<br>";
-array_push($sports,"Golf");
+echo "</table" . "<br>";
 
-var_dump($sports);
-echo "<br>";
+//Nested loops
 
-array_pop($sports); //removes an item at the end of an array
-var_dump($sports);
-echo "<br>";
+$arrays = array(
+    array(1,2,3),
+    array(1,2,3),
+    array(1,2,3),
+);
 
-array_unshift($sports, "Tennis");//adds an item at the begginign of an array
-var_dump($sports);
-echo "<br>";
+for($i=0; $i<3; $i++){
 
-array_shift($sports);//removs the first item
-var_dump($sports);
-echo "<br>";
-
-$output = array_slice($sports, 2);
-var_dump($output);
-echo "<br>";
-
-$sports = ["Football","Basketball","Volleyball","Handball"];
-
-$output = array_slice($sports, 0, 3);
-var_dump($output);
-echo "<br>";
-
-$sports = ["Football","Basketball","Volleyball","Handball"];
-$output = array_slice($sports, -2, 2);
-var_dump($output);
-echo "<br>";
-
-//array_sum
-
-$values = [12,24,30,55];
-
-$sum = array_sum($values);
-var_dump($sum);
-echo "<br>";    
-
-$temperatures = [19,19,20,21,19,22,23];
-
-$avarage = array_sum($temperatures)/7;
-
-echo($avarage);
+    for($j=0; $j<3; $j++){
+        echo "Array: $i Element: $j .<br> ";
+    }
+}
 
 
+for ($i = 0; $i < 4; $i++) {
 
+    for($j=0; $j<=$i; $j++) {
+        echo "*";
+    }
+    echo "<br>";
+}
+
+//associative arrays
+
+$grade= array(
+    "math" => "1",
+    "art" => "5",
+    "history" => "3",
+    "music" => "4",
+);
+
+echo "Math grade is " .$grade["math"] . "<br>";
+
+foreach($grade as $subject => $grade) {
+    echo "Subject : " .$subject . ", Grade :" .$grade;
+    echo "<br>";
+}
 ?>
+
