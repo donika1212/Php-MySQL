@@ -1,123 +1,124 @@
+<table border ="1"> 
+<tr>
+<th>phones</tr>
+<th>in stock </tr>
+<th>sold </th>
+</tr>
 <?php
-//user defined functions
-function maximum($x,$y){
-    if ($x >$y){
-        return $x;
 
-    }else{
-        return $y;
+
+
+
+$dogs = array(
+    array ("chiuauha", "mexico",20),
+    array ("husky", "siberia",20),
+    array ("bulldog", "england",20),
+);
+echo $dogs[0][0] . ":origin" . $dogs[0][1] . "lifespan:" . $dogs[0] [2]. "<br>";
+echo $dogs[1][0] . ":origin" . $dogs[1][1] . "lifespan:" . $dogs[1] [2]. "<br>";
+echo $dogs[2][0] . ":origin" . $dogs[2][1] . "lifespan:" . $dogs[2] [2]. "<br>";
+for ($row = 0 ; $row<3; $row++){
+    echo "<p><b> row numbers $row </b></p>";
+    for ($col=0;$col<3;$col++){
+    echo "<li>".$dogs [$row][$col]. "</li>";
+
+
+}
+
+echo "</ul";
+
+
+}
+
+
+
+
+
+
+
+
+
+
+//iphones
+
+$phones = array(
+    array ("iphone 16", "usa",2024),
+    array ("iphone 15", "usa",2023),
+    array ("iphone 14", "iphone",2022),
+);
+echo $phones[0][0] . ":origin" . $phones[0][1] . "lifespan:" . $phones[0] [2]. "<br>";
+echo $phones[1][0] . ":origin" . $phones[1][1] . "lifespan:" . $phones[1] [2]. "<br>";
+echo $phones[2][0] . ":origin" . $phones[2][1] . "lifespan:" . $phones[2] [2]. "<br>";
+for ($row = 0 ; $row<3; $row++){
+    echo "<p><b> row numbers $row </b></p>";
+    for ($col=0;$col<3;$col++){
+    echo "<li>".$phones [$row][$col]. "</li>";
+
+
+}
+
+echo "</ul";
+
+
+}
+
+$phones = array(
+    array("Model" => "iPhone 16", "Origin" => "USA", "Release Year" => 2024),
+    array("Model" => "iPhone 15", "Origin" => "USA", "Release Year" => 2023),
+    array("Model" => "iPhone 14", "Origin" => "USA", "Release Year" => 2022),
+);
+
+echo $phones[0]["Model"] . ": origin " . $phones[0]["Origin"] . ", release year: " . $phones[0]["Release Year"] . "<br>";
+echo $phones[1]["Model"] . ": origin " . $phones[1]["Origin"] . ", release year: " . $phones[1]["Release Year"] . "<br>";
+echo $phones[2]["Model"] . ": origin " . $phones[2]["Origin"] . ", release year: " . $phones[2]["Release Year"] . "<br>";
+
+// Display the data in a structured HTML table
+
+
+
+//nerted loops
+$arrays =array(
+    array (1,2,3),
+    array (1,2,3),
+    array (1,2,3),
+);
+for ($i=0 ; $i<3; $i++){
+    for ($j=0; $j<3; $j++) {
+        echo "array: $i element: $j .<br> ";
     }
-
 }
-$a=20;
-$b=30;
-
-$test = maximum($a,$b);
-echo "the max of $a and $b is $test" . "<br>";
 
 
-//fully_divisibile function
-function fully_divisible($num1, $num2) {
-   
-    if ($num2 == 0) {
-        return false; 
+for($i=0; $i < 5; $i++){
+    for($j =0; $j<$i; $j++ ){
+        echo "*";
+
     }
-    
-    return $num1 % $num2 == 0; 
+    echo "<br>";
 }
 
-// Example usage
-$number1 = 20;
-$number2 = 2;
 
-if (fully_divisible($number1, $number2)) {
-    echo "$number1 is fully divisible by $number2";
-} else {
-    echo "$number1 is not fully divisible by $number2";
-} 
-//print_r(fully_divisible(4)). "<br>";
-//var scope
-//global
-//local
-//static
-
-$x=5; //global
-
-function localVariable(){
-    $y=10;
-   // echo $x ."<br>";
-    echo $y ."<br>";
+$grade = array(
+    "math" => "1",
+    "art"=> "5",
+    "history" => "7",
+    "gj,shqipe"=>"3",
+);
+echo "math grade is" . $grade["math"];
+foreach($grade as $subject => $grade ){
+    echo "subject: " . $subject  . ", grade " .$grade;
+    echo "<br>";
 }
 
-localVariable(). "<br>";
-
-//static
-function add1(){
-    static $number=0;
-    $number++;
-    return $number;//1
-
-}
-echo add1();//1
-echo  "<br>";
-echo add1();//2
-echo  "<br>";
-echo add1();//3
+ 
 
 
-$sport1= "football";
-$sport2= "basketball";
-$sport3= "mma";
 
-//$sport = array("football","basketball","mma",)
-$sports = ["football","basketball","mma"];
-echo "<br>";
-echo $sports[0];
-echo "<br>";
-echo $sports[1];
-echo "<br>";
-echo end($sports);//the last item
-echo "<br>";
-echo count($sports);//return the number of elements as an integer
-echo "<br>";
-$len=count ($sports);
-for($i=0; $i < $len; $i++){
-    echo $sports [$i] ,"\n";
-}
-echo "<br>";
-array_push($sports,"boxing");//add an item at the end of an array.
-var_dump($sports);
-echo "<br>";
-array_pop($sports); //removes an item at the end of an array
-var_dump($sports);
 
-array_unshift($sports, "KIck boxing");//adds an item at the beggining of an array
-var_dump($sports);
-echo "<br>";
-array_shift($sports);
-var_dump($sports);
-echo "<br>";
-$output = array_slice ($sports, 2);
-var_dump($output);
-echo "<br>";
-$sports = ["football","basketball","mma"];
-$output = array_slice($sports,0,3);
-var_dump($output);
-echo "<br>";
-$sports = ["football","basketball","mma"];
-$output = array_slice($sports,-2,2);
-var_dump($output);
-echo "<br>";
-//array sum
-$values= [12,24,30,55];
-$sum =array_sum($values);
-var_dump($sum);
 
-$weekly_temperature =[25,31,22,34,63,21,32];
-$average =array_sum($weekly_temperature)/7;
-echo($average);
+
+
+
+
+
 ?>
-
-
-
-
