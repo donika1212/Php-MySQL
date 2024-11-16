@@ -1,123 +1,68 @@
-
-<table border="1">
-<tr>
-<th>Phones</th>
-<th>In stock</th>
-<th>Sold</th>
-
-</tr>
-
-<style>
-table{
-    width:50%;
-    border-collapse:collapse;
-}
-
-th, td{
-    padding:30px;
-    text-align:left;
-    border:3px solid red;
-}
-
-th{
-    background-color:blue;
-    font-weight:bold;
-
-}
-</style> 
-
-
-
-
-
 <?php
 
+$name = 'Amar';
 
-//Multidimensional arrays
+$Lastname = 'Simnica';
 
-$dogs = array(
-    array("Chihuahua","Mexico",20), 
-    array("Husky","Siberia",15),
-    array("Bulldog","England",10),
+echo"Hello $name $Lastname!" ."<br>";
+
+$pi = 3.14;
+$r = 3;
+
+$S = $pi*pow($r,2);
 
 
-);
+echo "Siperfaqja e rrethit: $S " . "<br>";
 
-echo $dogs[0][0] .":Origin:" .$dogs[0][1] . ",Life Span:" .$dogs[0][2] ."<br>";
-echo $dogs[1][0] .":Origin:" .$dogs[1][1] . ",Life Span:" .$dogs[1][2] ."<br>";
-echo $dogs[2][0] .":Origin:" .$dogs[2][1] . ",Life Span:" .$dogs[2][2] ."<br>";
 
-for($row=0;$row<3;$row++){
-    echo "<p><b>Row number $row </b></p>";
-    echo "<ul>";
-    for($col=0;$col<3;$col++){
-echo "<li>"  . $dogs[$row][$col] .  "</li>";
-    }
-    echo"</ul>";
+$mosha = 15;
+
+if($mosha >= 18){
+    echo "Keni te drejte te votoni";
+} else {
+    echo"Nuk keni te drejte te votoni"."<br>";
 }
 
-$phones = array(
-    array("Iphone 14","20",10),
-    array("Iphone 13","20",20),
-    array("Iphone 12","20",25),
-    array("Iphone 11","25",40),
 
-);
 
-for($row=0;$row<3;$row++) {
-    echo "<tr>";
+$day = 3;
 
-    for($col=0;$col<3;$col++) {
-        echo "<td>" .$phones[$row][$col] . "</td>";
-    }
-    echo"</tr>";
+switch($day) {
+    case 1:
+        
 
+    case 2:
+            
+    case 3:
+                
+    case 4:   
+        
+    case 5:
+      echo"Dite jave";
+          break;
+        case 6: 
+      echo"Dite vikendi";
+        break;
+        case 7:
+      echo"Dite vikendi";
+        break;
+
+       default:
+      echo"Invalid ";
+}
+
+
+
+
+
+function shuma($array){
+    return array_sum($array);
 } 
+$array = [1,2,3,4,5,6];
 
-echo "</table>";
-
-
-//Nested loops
-
-$arrays = array(
-    array(1,2,3),
-    array(1,2,3),
-    array(1,2,3),
-
-);
-
-for($i=0;$i<3;$i++){
-    for($j=0; $j<3;$j++){
-        echo "Array: $i Element: $j .<br>";
-    }
-}
+echo "Shuma e elementeve ne array eshte:" .shuma($array);
 
 
-
-for($i=0;$i < 4;$i++){
-    for($j=0;$j<=$i;$j++){
-        echo "*";
-    }
-    echo"<br>";
-}
-
-//Associative arrays
-
-$grade = array(
-    "Math"=>"1",
-    "Art"=>"5",
-    "History"=>"3",
-    "Music"=>"4",
-
-);
-
-echo "Math grade is" .$grade["Math"] ."<br>";
-
-
-foreach($grade as $subject =>$grade){
-    echo"Subject:" .$subject .", Grade:"  .$grade;
-    echo"<br>";
-}
 
 
 ?>
