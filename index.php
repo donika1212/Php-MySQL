@@ -1,134 +1,57 @@
-
-<table border="1">
-<tr> 
-    <th> Phones </th>
-    <th> In stock </th>
-    <th> Sold </th>
-
-</tr>
-
-<style>
-
-table {
-    width:50%;
-    border-collapse:collapse;
-
-}
-
-th, td {
-    padding:30px;
-    text-align:left;
-    border: 3px solid red;
-}
-
-th {
-    background-color: gray;
-    font-weight: bold;
-}
-
-</style>
-
 <?php
-//MULTIDEMESIONAL ARRAY
 
-$dogs = array(
-    array("chihuahua","mexico", 20), 
-    array("Husky","Siberia", 15),
-    array("golden retriever","America", 10),
-    array("bulldog","england", 40),
+$x = "aldin";
+$y = "halimi";
+
+echo "Hello $x $y!" , "<br>";
+
+
+
+
+
+$pi= 3.14;
+$r= 2.17;
+
+pow($r,2);
+$s = $pi*pow($r,2);
+
+echo "siperfaqja  eshte $s" . "<br>";
+
+$age= 15;
+
+if($age > 18){
+    echo "you can vote";
+} else{
+    echo "you cant vote";
+};
+
+$day = "Monday";
+
+switch ($day){
+    case "Monday":
+    case "tuesday":
+    case "wendsday":
+    case "thursday":
+    case "friday":
+    echo "its week day" . "<br>";
+    break;
+    case "saturday":
+    case "sunday":
+
+    echo "its a weekend day";
+    break;
+    default:
+    echo "invalid day";
+};
+
+function shuma($numbers){
+    return array_sum($numbers);
     
-    );
-    
-    
-    echo $dogs[0][0] . ":Origin:" . $dogs[0][1] . ",Life Span" . $dogs[0][2] . "<br>";
-    echo $dogs[1][0] . ":Origin:" . $dogs[1][1] . ",Life Span" . $dogs[1][2] . "<br>";
-    echo $dogs[2][0] . ":Origin:" . $dogs[2][1] . ",Life Span" . $dogs[2][2] . "<br>";
-    echo $dogs[3][0] . ":Origin:" . $dogs[3][1] . ",Life Span" . $dogs[3][2] . "<br>";
-    
-    for($row=0;$row<3;$row++) {
-        echo "<p><b> Row number $row </b></p>";
-        echo"<ul>";
-        for($col=0;$col<3;$col++) {
-            echo "<li>" . $dogs[$row][$col] . "</li>";
-    
-    
-        }
-        echo "</ul>";
-    
-    }
-
-$phones= array(
-    array("iphone 14",10, 20), 
-    array("iphone 13",9, 15),
-    array("iphone 12",10, 10),
-    array("iphone 11",4, 10),
-    
-    
-);
-
-for($row=0;$row<4;$row++) {
-
-        echo "<tr>";
-
-    for($row=0;$col<3;$col++) {
-
-            echo "<td>" .$phones[$row][$col] ."</td>";
-        }
-
-        echo "</tr>";
-
-
-    }
-
-    echo "</table>";
-
-
- $arrays = array(
-    array(1,2,3),
-    array(1,2,3),
-    array(1,2,3),
- );
-
- for($i=0; $i<3; $i++){
-    for($j=0; $j<3; $j++){
-        echo "Array: $i Element: $j . <br> ";
-     }
- }
-
-
- for ($i=0 ; $i <4; $i++) {
-
-    for($j=0; $j<=$i; $j++){
-        echo"*";
-    }
-
-    echo"<br>";
- }
-
- //associative arrays
-
- 
-$grade= array(
-    "Math" => "1",   
-    "Art" => "5",
-    "History" => "3",
-    "Music" => "4";
-
-);
-
-echo "math grade is ".$grade["Math"];
-
-
-foreach($grade as $subject => $grade) {
-
-    echo "subject :" .$subject . ", Grade :" .$grade; 
-    echo "<br>";
 }
 
+$numbers = array(1,2,3,4);
 
+echo "shuma e antarv:" . shuma ($numbers);
 
-
-
-    
 
 ?>
