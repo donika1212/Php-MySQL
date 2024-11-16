@@ -1,103 +1,54 @@
 <?php
 
-//Switch
 
-$age=16;
+$x = "florjon";
+$y = "BABLOKI";
 
-switch($age) {
-    case ($age >=0 && $age <18):
-    echo "you are a minor (0-18 years old)";
+echo "hello $x $y!". "<br>" ;
+
+$pi = 3.14;
+$r  = 50;
+$s =  $pi * pow($r,2) ;
+echo "Siperfaqja eshte $s";
+
+$age = 15;
+if($age > 18){
+    echo "JU KENI DREJT MOSTANIN";
+}else{
+    echo " JU SKENI DREJT VALLA ME VOTU";
+};
+
+
+
+$day4;
+
+
+switch($day){
+    case "Monday":
+    case "Wensday":
+    case "Thursday":
+    case "Friday":
+    echo "Its Week day";
     break;
-    
-    
-    case ($age >=18 && $age <25):
-        echo "you are a young adult" . "<br>";
-        break;
-
-
-        
-    case ($age > 25):
-        echo "you are a young adult" . "<br>";
-        break;
-        
-     default:
-     echo "invalid age" . "<br>";   
-        
+    case "Saturday":
+    case "Sunday":
+      echo "Its Weekend Day";  
 
 }
 
 
-$day = "tuesday";
 
-switch($day) {
-    case "monday":
-        echo "It s Monday" . "<br>";
-    break;
-    case "Tuesday":
-         echo "It s Tuesday" . "<br>";
-    break;
-         case "monday":
-            echo "It s Monday" . "<br>";           
-}
-
-
-
-//loops 
-
-$x = 1;
-
-while ($x <= 5){
-    echo "The number is: $x" . "<br>";
-
-    $x++;
-}
-
-$y =1;
-
-do{
-    echo "the number is : $y." . "<br>";
-    $y++;   
-}while($y <=6);
-
-for ($x=0; $x < 10; $x++) {
-    echo "Shkolla digjitale" . "<br>";
-}
-
-$cars = array ("BMW","VW","MERCEDES","KTM");
-
-foreach($cars as $value) {
-    echo "$value" . "<br>";
-}
-
-$age = array("John sins" => "18" ,"Nystret" => "23", "Shtrafciger" => "10");
-
-foreach($age as $key => $value) {
-    echo "$key = $value" . "<br>";
-}
-
-//built-in functions
-
-phpinfo();
-$y= "KUJT AMA BATARIN";
-print_r($y);
-
-$x=2;
-echo gettype($x) . "<br>";
-
-$x=2.3;
-echo gettype($x) . "<br>";
-
-$x="SHkolla";
-echo gettype($x) . "<br>";
-
-function displayPhpVersion (){
-    echo "this is PHP:" . Phpversion() . "<br>";
+function shuma($numbers){
+    return array_sum($numbrs);
 
 }
 
-displayPhpVersion();
-//User defined functions
+
+$number = array (1,2,3,4);
+echo "Shuma e antarve". shuma ($sum);
 
 
 
 
+
+?>
