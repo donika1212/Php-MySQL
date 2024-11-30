@@ -1,46 +1,45 @@
 <?php
-$a = "Ajan";
-$b = "Syla";
 
-echo"Hello $a $b !". "<br>";
+//fopen
+$my_file = fopen("file1.txt", "w");
 
-$pi = 3.14;
-$r = 4;
+//fclose
+fclose($my_file);
 
-echo $pi * pow($r,2) . "<br>";
+//fread
 
-$age = 19;
+$filename = "ds.txt";
+$file = fopen($filename, "r");
+$filesize = filesize($filename);
 
-if($age>=18){
-    echo "You can vote". "<br>";
-}else{
-    echo "You can't vote". "<br>";
+$my_filedata = fread ($file,$filesize);
+echo $my_filedata . "<br>";
+
+fclose($file);
+
+//feof
+
+$file1 = fopen("example.txt","r");
+
+while(!feof($file1)) {
+    echo fgets($file1) . "<br>";
 }
 
-$day=2;
+//fwrite
+$my_file = fopen("file1.txt","w");
 
-switch($day) {
-    case 1:  
-    case 2:
-    case 3:
-    case 4:
-    case 5:
-        echo"It's weekday" . "<br>";
-             break;
-    case 6:
-    case 7:
-         echo"It's weekend" . "<br>";
-             break;
-     default:
-         echo"invalid day" . "<br>";
-             break;                                                     
-}
+$text = "computer programming";
 
-function sum($nr) {
-    return array_sum($nr);
-}
+fwrite($my_file,$text);
 
-$nr = array (3,12,35);
-echo "sum:".sum($nr);
+//w+ (read and write mode)
+$my_file = fopen("data.txt", "w+");
+
+fwrite($my_file, "data test 1");
+
+//a+
+$my_file = fopen("data.txt","a+");
+
+fwrite($my_file, "dddddddgdgdggdddge");
 
 ?>
