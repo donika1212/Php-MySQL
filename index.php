@@ -1,49 +1,23 @@
 <?php
 
-$my_file = fopen("file1.txt","w");
+$host = "localhost";
+$user = "root";
+$pass = "";
 
-//fclose
-fclose($my_file);
+try {
 
-//fread
+    $conn = new PDO ("mysql:host=$host", $user, $pass);
 
-$filename = "ds.txt";
+    $sql = "CREATE DATABASE database1";
 
-$file = fopen($filename,"r");
+    $conn ->exec($sql);
 
-$filesize = filesize($filename);
+    echo "database is created";
 
-$my_filedata = fread($file,$filesize);
+}catch (Exeption $e) {
+    echo "NOT CONNECTED";
 
-echo $my_filedata . "<br>";
-
-fclose($file);
-
-//feof
-
-$file1= fopen("example.txt", "r");
-
-while(!feof($file1)) {
-    echo fgets($file1) . "<br>";
 }
-
-//fwrite
-$my_file = fopen("file1.txt","w");
-
-$text = "computer programming";
-
-fwrite($my_file,$text);
-
-//w+ (read and write mode)
-$my_file = fopen("data.txt","w+");
-
-fwrite($my_file, "Data test 1");
-
-//a+
-$my_file = fopen("data.txt", "a+");
-
-fwrite($my_file , "dddddgegdg");
-
 
 
 
