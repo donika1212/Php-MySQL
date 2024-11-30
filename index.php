@@ -1,137 +1,48 @@
 <?php
+//fopen
+$my_file = fopen("file.txt","w");
 
-//switch//
+//fclose
+fclose($my_file);
 
-$age=25;
+//fread
+$filename = "ds.txt";
 
-switch($age){
+$file = fopen($filename,"r");
 
-case ($age >= 0 && $age <18):
-    echo "You are a minor (0-18 years old)" . "<br>";
-    break;
-    case ($age >=18 && $age <=25):
-        echo "You are young adult" . "<br>";
-        break;
-        case ($age > 25):
-            echo "You are an adult";
-            break;
-            default:
-            echo "Invalid age";
-            break;
+$filesize = filesize($filename);
 
+$my_filedata = fread ($file,$filesize);
 
+echo $my_filedata ."<br>"; 
 
+fclose($file);
+
+//feof
+
+$file1 = fopen("example.txt","r");
+
+while(!feof($file1)) {
+    echo fgets($file1) ."<br>"; 
 }
 
+//fwrite
+$my_file = fopen("file1.txt","w");
 
-$day = "Tuesday";
+$text = "computer programming";
 
-switch($day){
+fwrite($my_file,$text);
 
-    case "Monday":
-        echo "It' s Monday!" . "<br>"; 
-        break;
+//w+ (read and write mode)
+$my_file = fopen("data.txt","w+");
 
-        case "Tuesday":
-            echo "It's Tuesday!" . "<br>";
-            break;
+fwrite($my_file,"Data test 1");
 
-            case "Wednesday":
-                echo "It's Wednesday!" . "<br>";
-                break;
+//a+
+$my_file = fopen("data.txt","a+");
 
-                case "Thursday":
-                    echo "It's Thursday!" . "<br>";
-                    break;
+fwrite($my_file,"uneeeeeee");
 
-                    case "Friday":
-                        echo "It's Friday!" . "<br>";
-                        break;
-
-                        case "Saturday":
-                            echo "It's Saturday!" . "<br>";
-                            break;
-
-                            case "Sunday":
-                                echo "It's Sunday!". "<br>";
-                                break;
-
-
-
-                            }
-//Loops (Unazat)//
-
-$x = 1;
-
-while( $x <= 5){
-    echo "The number is : $x" . "<br>";
-
-    $x++;
-}
-
-$y = 1;
-
-do{
-    echo "The number is : $y." . "<br>";
-    $y++;
-}while( $y <= 6);
-
-
-for($x=0;$x < 10; $x++){
-    echo "Shkolla Digjitale" . "<br>";
-}
-
-$cars = array ("Mercedes","Bmw","Audi","VW");
-
-foreach($cars as $value){
-    echo "$value" . "<br>";
-}
-
-
-$age = array("John" => "18", "Michael" => "23", "Joe" => "10");
-
-foreach($age as $key => $value){
-    echo "$key = $value" . "<br>";
-}
-
-//built-in Functions//
-
-//phpinfo();//
-
-$y="Hello" . "<br>";
-
-print_r($y);
-
-$x="SHKOLLA";
-echo gettype($x) . "<br>";
-
-
-function displayPhpVersion (){
-    echo "This is PHP:" .phpversion() . "<br>";
-}
-
-displayPhpVersion();
-
-//User defined functions//
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
 
 
 ?>
