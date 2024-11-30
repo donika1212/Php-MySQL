@@ -1,57 +1,53 @@
-<?php
+<?php 
 
-$x = "aldin";
-$y = "halimi";
+//fopen
+$my_file = fopen("file1.txt", "w");
 
-echo "Hello $x $y!" , "<br>";
+//fclose
+fclose($my_file);
+
+//fread
+
+$filename = "ds.txt";
+
+$file = fopen($filename,"r");
+
+$filesize = filesize($filename);
+
+$my_filedata = fread ($file,$filesize);
+
+echo $my_filedata . "<br>";
+
+fclose($file);
+
+//feof 
+
+$file1 = fopen("example.txt", "r");
+
+while(!feof($file1)){
 
 
-
-
-
-$pi= 3.14;
-$r= 2.17;
-
-pow($r,2);
-$s = $pi*pow($r,2);
-
-echo "siperfaqja  eshte $s" . "<br>";
-
-$age= 15;
-
-if($age > 18){
-    echo "you can vote";
-} else{
-    echo "you cant vote";
-};
-
-$day = "Monday";
-
-switch ($day){
-    case "Monday":
-    case "tuesday":
-    case "wendsday":
-    case "thursday":
-    case "friday":
-    echo "its week day" . "<br>";
-    break;
-    case "saturday":
-    case "sunday":
-
-    echo "its a weekend day";
-    break;
-    default:
-    echo "invalid day";
-};
-
-function shuma($numbers){
-    return array_sum($numbers);
-    
+    echo fgets($file1) .  "<br>";
 }
 
-$numbers = array(1,2,3,4);
+//fwrite
+$my_file = fopen("file1.txt", "w");
 
-echo "shuma e antarv:" . shuma ($numbers);
+$text = "computer programing";
 
+fwrite($my_file,$text);
+
+
+//w+(read and write mode)
+
+$my_file = fopen("data.txt", "w+");
+
+fwrite($my_file, "Data test 1");
+
+
+//a+
+$my_file = fopen("data.txt", "a+");
+
+fwrite($my_file, "dddddddfggd");
 
 ?>
