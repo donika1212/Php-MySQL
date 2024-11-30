@@ -2,28 +2,16 @@
 
 $host = "localhost";
 $user = "root";
-$pass = "";
+$pass = " ";
 
 try {
-    $conn = new PDO ("mysql:host=$host",$user,$pass);
-
-    $sql = "Create DATABASE database1";
-
+    $conn = new PDO("mysql:host=$host", $user,$pass);
+    $sql = " CREATE DATABASE database13";
     $conn -> exec($sql);
+     echo "database created";
 
-    echo "Database is created";
-
-}catch(Exeption $e) {
-    echo "Database is not created";
+}catch (Exeption $e){ 
+    echo " database is not created";
 }
-
-
-
-
-
-
-
-
-
 
 ?>
