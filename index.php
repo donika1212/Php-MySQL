@@ -1,68 +1,51 @@
 <?php
+//fopen
 
-$name = 'Amar';
+$my_file = fopen("file1.txt","w");
 
-$Lastname = 'Simnica';
+fclose($my_file);
 
-echo"Hello $name $Lastname!" ."<br>";
+//fread
 
-$pi = 3.14;
-$r = 3;
+$filename = "ds.txt";
 
-$S = $pi*pow($r,2);
+$file = fopen($filename,"r");
 
-
-echo "Siperfaqja e rrethit: $S " . "<br>";
+$filesize = filesize($filename);
 
 
-$mosha = 15;
+$my_filedata = fread($file,$filesize);
 
-if($mosha >= 18){
-    echo "Keni te drejte te votoni";
-} else {
-    echo"Nuk keni te drejte te votoni"."<br>";
+echo $my_filedata . "<br>";
+
+fclose($file);
+
+//feof
+
+$file1 = fopen("example.txt","r");
+
+while(!feof($file1)) {
+    echo fgets ($file1) . "<br>";
 }
 
 
+//fwrite
 
-$day = 3;
+$my_file = fopen("file1.txt","w");
 
-switch($day) {
-    case 1:
-        
+$text = "Computer programming";
 
-    case 2:
-            
-    case 3:
-                
-    case 4:   
-        
-    case 5:
-      echo"Dite jave";
-          break;
-        case 6: 
-      echo"Dite vikendi";
-        break;
-        case 7:
-      echo"Dite vikendi";
-        break;
+fwrite($my_file,$text);
 
-       default:
-      echo"Invalid ";
-}
+//w+ (read and write mode)
+$my_file = fopen("data.txt","w+");
 
+fwrite($my_file, "Data test 1");
 
+//a+
 
+$my_file = fopen("data.txt","a+");
 
-
-function shuma($array){
-    return array_sum($array);
-} 
-$array = [1,2,3,4,5,6];
-
-echo "Shuma e elementeve ne array eshte:" .shuma($array);
-
-
-
+fwrite($my_file, "dddddddddfgfg");
 
 ?>
