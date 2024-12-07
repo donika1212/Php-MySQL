@@ -1,7 +1,8 @@
-CREATE TABLE categories(
-    id INTEGER PRIMARY KEY,
+CREATE TABLE categories (
+    id INTEGER PRIMARY KEY;
     name VARCHAR(255) NOT NULL
-);
+)
+
 
 CREATE TABLE products (
     id INTEGER PRIMARY KEY,
@@ -11,12 +12,13 @@ CREATE TABLE products (
 );
 
 INSERT INTO categories (id,name) VALUES
-(1,"Fruit"),
-(2,"Bakery"),
-(3,"Dry goods"),
-(4,"Vegetables");
+(1,"fruit"),
+(2,"bostan"),
+(3,"kumlla"),
+(1,"patellgjan");
 
-INSERT INTO products (id,name,category_id) VALUES
-(1,"Apples",1),
-(2,"Bananas",1),
-(3,"Bread",2);
+
+INSERT INSERT products (id,category_id) VALUES
+(1,"Pjeshka",1),
+(2,"bananet",1),
+(3,"Buka",);
