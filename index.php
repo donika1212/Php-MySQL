@@ -1,26 +1,18 @@
-<?php
+<?php  
 
-$host = "localhost";
-$user = "root";
-$pass = "";
 
-try {
-    $conn = new PDO ("mysql:host=$host",$user,$pass);
+try{
+$pdo = new PDO("mysql:host=localhost;dbname=database1","root","");
 
-    $sql = "Create DATABASE database1";
+$sql = "ALTER TABLE products ADD email VARCHAR(255)";
 
-    $conn -> exec($sql);
+$pdo ->exec($sql);
 
-    echo "Database is created";
+echo "Column created succesfully";
 
-}catch(Exeption $e) {
-    echo "Database is not created";
+}catch(PDOExeption $e){
+    echo "Error creating columns:" . $e ->getMessage();
 }
-
-
-
-
-
 
 
 
