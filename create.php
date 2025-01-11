@@ -1,6 +1,3 @@
-
-
-
 <?php
 
 $host="localhost";
@@ -13,11 +10,13 @@ try {
 
     $conn = new PDO ("mysql:host=$host;dbname=$db", $user,$pass);
 
-    $sql = "INSERT INTO user3 (username,password) VALUES ('ron','ron123')";
+    $sql = "CREATE TABLE user3 (id INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                          username VARCHAR(30) NOT NULL,
+                          password VARCHAR(50) NOT NULL)";
 
     $conn ->exec($sql);
 
-    echo "new row inserted successfully";
+    echo "Table created successfully";
 
 
 
