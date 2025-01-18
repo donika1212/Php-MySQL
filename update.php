@@ -1,0 +1,29 @@
+<?php
+
+
+include_once("config.php");
+
+if(isser($_POST['id'])) {
+    $id = $_GET['id'];
+    $username = $_GET['username']
+    $lastname = $_GET ['lastname'];
+
+    $sql = "UPDATE mytable SET username=username, lastname=lastname WHERE :id=id";
+
+    $prep = $conn->prepare($sql);
+
+    $prep->bindParam(':id',$id);
+    $prep->bindParam(':username',$username);
+    $prep->bindParam(':lastname',$lastname);
+
+    $prep->execute();
+
+    header('Location:dashboard.php');
+}
+
+
+
+
+
+
+?>
