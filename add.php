@@ -1,47 +1,30 @@
 <?php
 
+	include_once('config.php');
 
-    include_once('config.php');
+	if(isset($_POST['submit']))
+	{
 
-
-    if(isset($_POST['submit']))
-    {
-
-
-        $username = $_POST['username'];
-        $name = $_POST['name'];
-        $surname = $_POST['surname'];
-        $password = $_POST['password'];
-        $email = $_POST['email'];
+	    $name = $_POST['name'];
+		$age = $_POST['age'];
 
 
+			$sql = "INSERT INTO mytable (name,age) VALUES (:name, :age)";
 
-            $sql = "INSERT INTO user1(username,name,surname,password,email) VALUES (:username, :name, :surname, :password, :email)";
+			$insertSql = $conn->prepare($sql);
 
+			$insertSql->bindParam(':name', $name);
+			$insertSql->bindParam(':age', $age);
 
-            $insertSql = $conn->prepare($sql);
+			$insertSql->execute();
 
+			echo "The user has been added successfully";
 
-            $insertSql->bindParam(':username', $username);
-            $insertSql->bindParam(':name', $name);
-            $insertSql->bindParam(':surname', $surname);
-            $insertSql->bindParam(':password', $password);
-            $insertSql->bindParam(':email', $email);
+			echo "<br>";
 
+			echo "<a href='dashboard.php'>Dashboard</a>";
 
-            $insertSql->execute();
-
-
-            echo "The user has been added successfully";
-
-
-            echo "<br>";
-
-
-            echo "<a href='dashboard.php'>Dashboard</a>";
-
-
-    }
+	}
 
 
 ?>

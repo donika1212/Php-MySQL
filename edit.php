@@ -1,67 +1,56 @@
 <?php 
 
-
 include_once("config.php");
-
 
 $id = $_GET['id'];
 
-
-$sql = "SELECT * FROM user1 WHERE id=:id";
-
+$sql = "SELECT * FROM mytable WHERE id=:id";
 
 $prep = $conn->prepare($sql);
 
-
 $prep->bindParam(':id', $id);
-
 
 $prep->execute();
 
-
 $data = $prep->fetch();
-
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Edit</title>
+	<meta charset="UTF-8">
+	<title>Edit</title>
 
+	<style>
 
-    <style>
+		form>input {
+		    margin-bottom: 10px;
+		    font-size: 20px;
+		    padding: 5px;
+		}
 
-
-        form>input {
-            margin-bottom: 10px;
-            font-size: 20px;
-            padding: 5px;
-        }
-        button {
-            background: none;
-            border: none;
-            border: 1px solid black;
-            padding: 10px 40px;
-            font-size: 20px;
-            cursor: pointer;
-        }
-    </style>
+		button {
+		    background: none;
+		    border: none;
+		    border: 1px solid black;
+		    padding: 10px 40px;
+		    font-size: 20px;
+		    cursor: pointer;
+		}
+	</style>
 </head>
 <body>
-    
-    <form action="update.php" method="POST">
-    <input type="number" name="id"  value="<?php echo $data['id']?>" readonly><br>
-    <input type="text" name="username" value="<?php echo $data['username']?>"><br>
+	
+	<form action="update.php" method="POST">
+		
+	<input type="hidden" name="id" value="<?php echo $data['id']?>"><br>
     <input type="text" name="name" value="<?php echo $data['name']?>"><br>
-    <input type="text" name="surname" value="<?php echo $data['surname']?>"><br>
-    <input type="email" name="email" value="<?php echo $data['email']?>"><br>
+    <input type="number" name="age" value="<?php echo $data['age']?>"><br>
 
-
-        <br><br>
-        <button type="submit" name="update">UPDATE</button>
+		<br><br>
+		<button type="submit" name="update">UPDATE</button>
        
-    </form>
+	</form>
     <a href="dashboard.php">Dashboard</a>
-    </body>
+	</body>
 </html>
