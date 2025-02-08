@@ -12,7 +12,7 @@ if(isset($_POST['submit']))
     echo "Fill all the fields!";
     header( "refresh:2; url=login.php" ); 
   }else{
-    $sql = "SELECT * FROM user1 WHERE username=:username";
+    $sql = "SELECT * FROM users WHERE username=:username";
     $insertSql = $conn->prepare($sql);
     $insertSql->bindParam(':username', $username);
 

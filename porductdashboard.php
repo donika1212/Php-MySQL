@@ -5,7 +5,7 @@
 	{
 		header('Location: login.php');
 	}
-  $sql = "SELECT * FROM users";
+  $sql = "SELECT * FROM user1";
   $selectUsers = $conn->prepare($sql);
   $selectUsers->execute();
 
@@ -87,7 +87,7 @@
 
         include_once('config.php');
 
-        $getUsers = $conn->prepare("SELECT * FROM users");
+        $getUsers = $conn->prepare("SELECT * FROM user1");
 
         $getUsers->execute();
 

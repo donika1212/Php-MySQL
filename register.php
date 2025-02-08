@@ -18,7 +18,7 @@ include_once('config.php');
     }
     else{
 
-        $sql = "SELECT username FORM users WHERE username=:username";
+        $sql = "SELECT username FROM users WHERE username=:username";
 
         $tempSql = $conn->prepare($sql);
         
@@ -31,7 +31,7 @@ include_once('config.php');
             header("refresh:2; url=singup.com");
         }
         else {
-            $sql = "INSERT INTO user1(username,name,surname,password,email) VALUES (:username, :name, :surname, :password, :email)";
+            $sql = "INSERT INTO users(username,name,surname,password,email) VALUES (:username, :name, :surname, :password, :email)";
 
 
             $insertSql = $conn->prepare($sql);
