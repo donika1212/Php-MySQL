@@ -1,41 +1,48 @@
+
 <?php
 
-include_once("config.php");
 
-if(isset($_POST["submit"])){
+    include_once('config.php');
 
-$name= $_POST["name"];
-$surname= $_POST["surname"];
-$email= $_POST["email"];
 
-$sql = "insert into admin(name,surname,email) values(:name,:surname,:email)";
+    if(isset($_POST['submit']))
+    {
 
-$sqlQuery = $conn->prepare($sql);
 
-$sqlQuery->bindParam(":name",$name);
-$sqlQuery->bindParam(":surname",$surname);
-$sqlQuery->bindParam(":email",$email);
+        $username = $_POST['username'];
+        $name = $_POST['name'];
+        $surname = $_POST['surname'];
+        $password = $_POST['password'];
+        $email = $_POST['email'];
 
-$sqlQuery->execute();
 
-echo "data saved successfully.........";
 
-}
+            $sql = "INSERT INTO admin(username,name,surname,password,email) VALUES (:username, :name, :surname, :password, :email)";
+
+
+            $insertSql = $conn->prepare($sql);
+
+
+            $insertSql->bindParam(':username', $username);
+            $insertSql->bindParam(':name', $name);
+            $insertSql->bindParam(':surname', $surname);
+            $insertSql->bindParam(':password', $password);
+            $insertSql->bindParam(':email', $email);
+
+
+            $insertSql->execute();
+
+
+            echo "The user has been added successfully";
+
+
+            echo "<br>";
+
+
+            echo "<a href='dashboard.php'>Dashboard</a>";
+
+
+    }
+
 
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <form action="add.php" methods="POST">
-        <input type="text" name="name" placeholder="name"><br>
-        <input type="text" name="surname" placeholder="surname"><br>
-        <input type="text" name="email" placeholder="email"><br>
-        <button type="submit" name="submit">ADD</button>
-</body>
-</html>

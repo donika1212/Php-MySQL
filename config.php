@@ -1,21 +1,25 @@
-<?php
 
-$user = "root";
-$pass = "";
-$host = "localhost";
-$dbname = "test";
+<?php
+session_start();
+
+$user="root";
+$pass="";
+$server="localhost";
+$dbname="test";
+
 
 try {
-$conn = new PDO ("mysql:host=$host;dbname=$dbname",$user,$pass);
-
-}catch (Exeption $e) {
-    echo "error:" .$e->getMessage();
+    
+    $conn =new PDO("mysql:host=$server;dbname=$dbname",$user,$pass);
 
 
+
+} catch (PDOException $e) {
+    echo "error: " . $e->getMessage();
 }
 
 
 
 
 
-?>
+ ?>

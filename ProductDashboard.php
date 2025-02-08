@@ -5,11 +5,11 @@
 	{
 		header('Location: login.php');
 	}
-  $sql = "SELECT * FROM admin";
-  $selectUsers = $conn->prepare($sql);
-  $selectUsers->execute();
+  $sql = "SELECT * FROM products";
+  $selectProducts = $conn->prepare($sql);
+  $selectProducts->execute();
 
-  $users_data = $selectUsers->fetchAll();
+  $products_data = $selectProducts->fetchAll();
 
 ?>
 
@@ -39,7 +39,7 @@
 </style>
 
 <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Welcome, <i> <?php echo $_SESSION['username']; ?> </i></a>
+  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Hello, <i> <?php echo $_SESSION['username']; ?> </i></a>
   <ul class="navbar-nav px-3">
     <li class="nav-item text-nowrap">
       <a class="nav-link" href="logout.php">Sign out</a>
@@ -53,7 +53,7 @@
       <div class="sidebar-sticky">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link active" href="dashboard.php">
+            <a class="nav-link active" href="Dashboard.php">
               <span data-feather="home"></span>
               Dashboard <span class="sr-only">(current)</span>
             </a>
@@ -65,9 +65,9 @@
             </a>
           </li>
           <li class="nav-item">
-          <?php foreach ($users_data as $user_data) { ?>
+          <?php foreach ($products_data as $products_data) { ?>
 
-            <a class="nav-link" href="profile.php?id=<?= $user_data['id'];?>">
+            <a class="nav-link" href="profile.php?id=<?= $products_data['id'];?>">
             <?php  } ?>
               <span data-feather="file"></span>
               Edit Profile
@@ -79,7 +79,7 @@
 
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Dashboard</h1>
+        <h1 class="h2">Products Dashboard</h1>
       </div>  
 
       <div>
@@ -87,11 +87,11 @@
 
         include_once('config.php');
 
-        $getUsers = $conn->prepare("SELECT * FROM admin");
+        $getProducts = $conn->prepare("SELECT * FROM products");
 
-        $getUsers->execute();
+        $getProducts->execute();
 
-        $users = $getUsers->fetchAll();
+        $products = $getProducts->fetchAll();
 
         ?>
          <a href="addProduct.php" id="product"> Add Product</a>
@@ -100,24 +100,24 @@
           <thead>
             <tr>
               <th>ID</th>
-              <th>Username</th>
-              <th>Name</th>
-              <th>Surname</th>
-              <th>Email</th>
+              <th>Title</th>
+              <th>Description</th>
+              <th>Quantity</th>
+              <th>Price</th>
               <th>Update</th>
             </tr>
           </thead>
           <?php
-            foreach ($users as $user ) {
+            foreach ($products as $product ) {
           ?>
           <tbody>
             <tr> 
-              <td> <?= $user['id'] ?> </td>
-              <td> <?= $user['username'] ?> </td>
-              <td> <?= $user['name']  ?> </td> 
-              <td> <?= $user['surname']  ?> </td> 
-              <td> <?= $user['email']  ?> </td>
-              <td> <?= "<a href='delete.php?id=$user[id]'> Delete</a>| <a href='profile.php?id=$user[id]'> Update </a>"?></td>
+              <td> <?= $product['id'] ?> </td>
+              <td> <?= $product['title'] ?> </td>
+              <td> <?= $product['description']  ?> </td> 
+              <td> <?= $product['quantity']  ?> </td> 
+              <td> <?= $product['price']/100  ?>$ </td>
+              <td> <?= "<a href='deleteProduct.php?id=$product[id]'> Delete</a>| <a href='product.php?id=$product[id]'> Update </a>"?></td>
             </tr>
           
             <?php 
