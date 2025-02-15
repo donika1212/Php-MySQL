@@ -2,51 +2,50 @@
 
 include_once('config.php');
 
-   if(isset($_POST['submit']))
-   {
-
-    $name = $_POST['name'];
-    $surname = $_POST['surname'];
-    $username = $_POST['username'];
-    $tempPass = $_POST['password'];
-    $email = $_POST['email'];
-    $password = password_hash($tempPass, PASSWORD_DEFAULT);
-
-    if(empty($name) || empty($surname) || empty($username) || empty($email) || empty($email) || empty($password) )
-    {
-        echo "You need to fill all the fields";
-    }
-    else{
-
-        $sql = "SELECT username FROM users WHERE username=:username";
-
-        $tempSql = $conn->prepare($sql);
-        
-        $tempSql->bindParam(':username', $username);
-
-        $tempSql->execute();
-
-        if(($tempSql->rowcount() > 0)) {
-            echo "Username exist!";
-            header("refresh:2; url=singup.com");
-        }
-        else {
-            $sql = "INSERT INTO users(username,name,surname,password,email) VALUES (:username, :name, :surname, :password, :email)";
+if(isset($_POST["submit"])) {
 
 
-            $insertSql = $conn->prepare($sql);
+$emri = $_POST["emri"];
+$username = $_POST["username"];
+$email = $_POST["email"];
+
+$tempPass = $_POST["password"];
+$password = password_hash($tempPass, PASSWORD_DEFAULT);
 
 
-            $insertSql->bindParam(':username', $username);
-            $insertSql->bindParam(':name', $name);
-            $insertSql->bindParam(':surname', $surname);
-            $insertSql->bindParam(':password', $password);
-            $insertSql->bindParam(':email', $email);
+$tempConfirm = $_POST["comfirm_password"];
+$confirm_password = password_hash($tempConfirm, PASSWORD_DEFAULT);
 
 
-            $insertSql->execute();
-             echo "Data saved successfully";
-             header("refresh:2; url=login.php");
-        }
-    }
-   }
+if(empty($emri) || empty($username) || empty($email) || empty($password) || empty($confirm_password))
+{
+    echo "you have not filled all the fields.";
+}
+else{
+
+    $sql = "INSERT INTO users(emri,username,email,password,confirm_password) VALUES (:emri,:username, :email, :password, :confirm_password)";
+
+    $insertSql = $conn->prepare($sql);
+
+    $insertSql->bindParam(":emri", $emri);
+    $insertSql->bindParam(":username", $username);
+    $insertSql->bindParam(":email", $email);
+    $insertSql->bindParam(":password", $password);
+    $insertSql->bindParam(":confirm_password", $confirm_password);
+
+    $insertSql->execute();
+    header("Location: index.php");
+
+}
+
+
+
+
+}
+
+
+
+
+
+
+?>
