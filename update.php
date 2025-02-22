@@ -1,25 +1,36 @@
 <?php
+
 include_once("config.php");
 
-if(isset($_POST['update'])){
+if(isset($_POST["submit"])){
 
-    $id = $_GET['id'];
-    $name = $_GET['name'];
-    $lastname=$_GET['surname'];
+    $id = $_POST['id'];
+    $movie_name = $_POST['movie_name'];
+    $movie_desc = $_POST['movie_desc'];
+    $movie_quality = $_POST['movie_quality'];
+    $movie_rating = $_POST['movie_rating'];
 
-    $sql = "UPDATE mytable SET name=name, surname:surname WHERE id=:id";
+    $sql = "UPDATE movies SET id = :id, movie_name=:movie_name, movie_desc=:movie_desc, movie_quality=:movie_quality, movie_rating=:movie_rating WHERE id=:id";
 
     $prep = $conn->prepare($sql);
 
-    $prep->bindParam(':id',$id);
-    $prep->bindParam(':name',$name);
-    $prep->bindParam(':lastname',$lastname);
-    
-    $prep->execute();
+    $prep->bindParam(":id,$id");
+    $prep->bindParam(":movie_name,$movie_name");
+    $prep->bindParam(":movie_desc,$movie_desc");
+    $prep->bindParam(":movie_quality,$movie_quality");
+    $prep->bindParam(":movie_rating,$movie_rating");
 
-    header('Location:dashboard.php');
-    
+    $prep->execute();
+    header('Location: dashboard.php');
+
+
+
+
+
 
 }
+
+
+
 
 ?>
