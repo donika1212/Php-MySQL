@@ -1,22 +1,18 @@
 <?php 
-/*Creating a session  based on a session identifier, passed via a GET or POST request.
-  We will include config.php for connection with database.
-  We will fetch all datas from users in database and show them.
-  If a user is admin, he can update or delete a user data.
-  */
-	  session_start();
+ 
 
-    include_once('config.php');
+	 session_start();
 
-    if (empty($_SESSION['username'])) {
-          header("Location: login.php");
-    }
-   
-    $sql = "SELECT * FROM users";
-    $selectUsers = $conn->prepare($sql);
-    $selectUsers->execute();
+   include_once('config.php');
 
-    $users_data = $selectUsers->fetchAll();
+   $id = $_GET['id'];
+
+   $sql = "SELECT * FROM users WHERE id=:id";
+   $selectUser = $conn->prepare($sql);
+   $selectUser->bindParam(':id', $id);
+   $selectUser->execute();
+
+   $user_data = $selectUser->fetch();
 	
 
  ?>
@@ -42,7 +38,7 @@
  
  
  <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#"><?php echo "Welcome to dashboard ".$_SESSION['username']; ?></a>
+  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#"><?php echo "Welcome to dashboard ".$_SESSION['lastname']; ?></a>
   <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -59,97 +55,62 @@
     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
       <div class="position-sticky pt-3">
         <ul class="nav flex-column">
-           <?php if ($_SESSION['is_admin'] == 'true') { ?>
-            <li class="nav-item">
-              <a class="nav-link" href="home.php">
-                <span data-feather="file"></span>
-                Home
-              </a>
-            </li>
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="dashboard.php">
               <span data-feather="home"></span>
               Dashboard
             </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="list_movies.php">
-              <span data-feather="file"></span>
-              Movies
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="bookings.php">
-              <span ></span>
-              Bookings
-            </a>
-          </li>
+          
         </ul>
-        <?php }else {?>
-          <li class="nav-item">
-              <a class="nav-link" href="home.php">
-               
-                Home
-              </a>
-            </li>
-          <li class="nav-item">
-          <a class="nav-link" href="bookings.php">
-            <span ></span>
-            Bookings
-          </a>
-        </li>
-        </ul>
-      <?php
-      } ?>
 
-        
+       
       </div>
     </nav>
 
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Dashboard</h1>
-        
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <div class="btn-group me-2">
+            <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+          </div>
+          <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+            <span data-feather="calendar"></span>
+            This week
+          </button>
+        </div>
       </div>
 
-    <?php if ($_SESSION['is_admin'] == 'true') { ?>
+    
 
-      <h2>Users</h2>
+      <h2>Edit user's details</h2>
       <div class="table-responsive">
-        <table class="table table-striped table-sm">
-          <thead>
-            <tr>
-              <th scope="col">Id</th>
-              <th scope="col">emri</th>
-              <th scope="col">Username</th>
-              <th scope="col">Email</th>
-              <th scope="col">Update</th>
-              <th scope="col">Delete</th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php foreach ($users_data as $user_data) { ?>
+        
+        <form action="updateUsers.php" method="post">
+    
+        <div class="form-floating">
+          <input type="number" class="form-control" id="floatingInput" placeholder="Id" emri="id" value="<?php echo  $user_data['id'] ?>">
+          <label for="floatingInput">Id</label>
+        </div>
+        <div class="form-floating">
+          <input type="text" class="form-control" id="floatingInput" placeholder="emri" name="emri" value="<?php echo  $user_data['emri'] ?>">
+          <label for="floatingInput">emri</label>
+        </div>
+        <div class="form-floating">
+          <input type="text" class="form-control" id="floatingInput" placeholder="usernamename" name="usernamename" value="<?php echo  $user_data['lastname'] ?>">
+          <label for="floatingInput">Lastname</label>
+        </div>
+        <div class="form-floating">
+          <input type="email" class="form-control" id="floatingInput" placeholder="Email" name="email" value="<?php echo  $user_data['email'] ?>">
+          <label for="floatingInput">Email</label>
+        </div>
+        <br>
+        <button class="w-100 btn btn-lg btn-primary" type="submit" name="submit">Change</button>
+      </form>
 
-               <tr>
-                <td><?php echo $user_data['id']; ?></td>
-                <td><?php echo $user_data['emri']; ?></td>
-                <td><?php echo $user_data['username']; ?></td>
-                <td><?php echo $user_data['email']; ?></td>
-                <!-- If we want to update a user we need to link into editUsers.php -->
-                <td><a href="editUsers.php?id=<?= $user_data['id'];?>">Update</a></td>
-                  <!-- If we want to delete a user we need to link into deleteUsers.php -->
-                <td><a href="deleteUsers.php?id=<?= $user_data['id'];?>">Delete</a></td>
-              </tr>
-              
-           <?php  } ?>
-           
-            
-          </tbody>
-        </table>
+
       </div>
-     <?php  } else {
-      
-    } ?>
     </main>
   </div>
 </div>
