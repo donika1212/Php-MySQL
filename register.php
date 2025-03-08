@@ -1,59 +1,40 @@
-
 <?php
 
+include_once('config.php');
 
-    include_once('config.php');
+if(isset($_POST["submit"])) {
 
+    $name = $_POST["name"];
+    $username = $_POST["username"];
+    $email = $_POST["email"];
+    $tempPass = $_POST["password"];
+    $password = password_hash($tempPass, PASSWORD_DEFAULT);
 
-    if(isset($_POST['submit']))
-    {
+    $tempConfirm = $_POST["confirm_password"];
+    $confirm_password = password_hash($tempConfirm, PASSWORD_DEFAULT);
 
-        $username = $_POST['username'];
-        $name = $_POST['name'];
-        $surname = $_POST['surname'];
-        $tempPass = $_POST['password'];
-        $email = $_POST['email'];
-        $password = password_hash($tempPass, PASSWORD_DEFAULT);
+    if(empty($name) || empty($username) || empty($email) || empty($password) || empty($confirm_password)) {
+        echo "You have not filled all the fields.";
+    }
+    else{
 
-        if(empty($name) || empty($surname) || empty($username) || empty($password) || empty($email) || empty($surname))
-        {
-            echo "You need to fill all the fields";
-        }
-        else{
-
-            $sql = "SELECT username FROM users WHERE username=:username";
-
-            $tempSql = $conn->prepare($sql);
+        
+        $sql = "INSERT INTO users(name, username, email, password, confirm_password) VALUES(:name, :username, :email, :password, :confirm_password)";
 
 
-            $tempSql->bindParam(':username', $username);
+        $insertSql = $conn->prepare($sql);
 
-            $tempSql->execute();
+        $insertSql->bindParam(":name", $name);
+        $insertSql->bindParam(":username", $username);
+        $insertSql->bindParam(":email", $email);
+        $insertSql->bindParam(":password", $password);
+        $insertSql->bindParam(":confirm_password", $confirm_password);
 
-            if(($tempSql->rowCount() > 0)) {
-                echo "Username exist!";
-                header("refresh:2; url=sighnup.com");
-            }
-            else {
-                $sql = "INSERT INTO users(name,surname,username,password,email) VALUES (:name, :surname, :username, :password, :email)";
+        $insertSql->execute();
+        header("Location: login.php");
+        
+    }
 
-
-            $insertSql = $conn->prepare($sql);
-
-
-            $insertSql->bindParam(':name', $name);
-            $insertSql->bindParam(':surname', $surname);
-            $insertSql->bindParam(':username', $username);
-            $insertSql->bindParam(':password', $password);
-            $insertSql->bindParam(':email', $email);
-
-            $insertSql->execute();
-
-            echo "Data saved successfully";
-            header("refresh:2; url=login.php");
-            }
-
-        }
-        }
+}
 
 ?>

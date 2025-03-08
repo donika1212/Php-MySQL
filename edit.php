@@ -1,22 +1,21 @@
 <?php 
-/*Creating a session  based on a session identifier, passed via a GET or POST request.
+ /*Creating a session  based on a session identifier, passed via a GET or POST request.
   We will include config.php for connection with database.
-  We will fetch all datas from users in database and show them.
-  If a user is admin, he can update or delete a user data.
+  We will fetch the data from database and show them, and create a form which will allow us to change the datas.
   */
-	  session_start();
+	 session_start();
 
-    include_once('config.php');
+   include_once('config.php');
 
-    if (empty($_SESSION['username'])) {
-          header("Location: login.php");
-    }
+   $id = $_GET['id'];
    
-    $sql = "SELECT * FROM users";
-    $selectUsers = $conn->prepare($sql);
-    $selectUsers->execute();
 
-    $users_data = $selectUsers->fetchAll();
+   $sql = "SELECT * FROM movies WHERE id=:id";
+   $selectUser = $conn->prepare($sql);
+   $selectUser->bindParam(':id', $id);
+   $selectUser->execute();
+
+   $user_data = $selectUser->fetch();
 	
 
  ?>
@@ -59,48 +58,13 @@
     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
       <div class="position-sticky pt-3">
         <ul class="nav flex-column">
-           <?php if ($_SESSION['is_admin'] == 'true') { ?>
-            <li class="nav-item">
-              <a class="nav-link" href="home.php">
-                <span data-feather="file"></span>
-                Home
-              </a>
-            </li>
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="dashboard.php">
               <span data-feather="home"></span>
               Dashboard
             </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="list_movies.php">
-              <span data-feather="file"></span>
-              Movies
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="bookings.php">
-              <span ></span>
-              Bookings
-            </a>
-          </li>
+         
         </ul>
-        <?php }else {?>
-          <li class="nav-item">
-              <a class="nav-link" href="home.php">
-               
-                Home
-              </a>
-            </li>
-          <li class="nav-item">
-          <a class="nav-link" href="bookings.php">
-            <span ></span>
-            Bookings
-          </a>
-        </li>
-        </ul>
-      <?php
-      } ?>
 
         
       </div>
@@ -109,47 +73,51 @@
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Dashboard</h1>
-        
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <div class="btn-group me-2">
+            <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+          </div>
+          <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+            <span data-feather="calendar"></span>
+            This week
+          </button>
+        </div>
       </div>
 
-    <?php if ($_SESSION['is_admin'] == 'true') { ?>
+    
 
-      <h2>Users</h2>
+      <h2>Edit movie's details</h2>
       <div class="table-responsive">
-        <table class="table table-striped table-sm">
-          <thead>
-            <tr>
-              <th scope="col">Id</th>
-              <th scope="col">Name</th>
-              <th scope="col">Lastname</th>
-              <th scope="col">Email</th>
-              <th scope="col">Update</th>
-              <th scope="col">Delete</th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php foreach ($users_data as $user_data) { ?>
+        
+        <form action="update.php" method="post">
+        <div class="form-floating">
+          <input readonly="readonly" type="text" class="form-control" id="floatingInput" placeholder="id" name="id" value="<?php echo  $user_data['id'] ?>">
+          <label for="floatingInput">ID</label>
+        </div>
+    
+        <div class="form-floating">
+          <input type="text" class="form-control" id="floatingInput" placeholder="movie_name" name="movie_name" value="<?php echo  $user_data['movie_name'] ?>">
+          <label for="floatingInput">Movie Name</label>
+        </div>
+        <div class="form-floating">
+          <input type="text" class="form-control" id="floatingInput" placeholder="Movie Description" name="movie_desc" value="<?php echo  $user_data['movie_desc'] ?>">
+          <label for="floatingInput">Movie Description</label>
+        </div>
+        <div class="form-floating">
+          <input type="text" class="form-control" id="floatingInput" placeholder="Movie Quality" name="movie_quality" value="<?php echo  $user_data['movie_quality'] ?>">
+          <label for="floatingInput">Movie Quality</label>
+        </div>
+        <div class="form-floating">
+          <input type="number" class="form-control" id="floatingInput" placeholder="Movie Rating" name="movie_rating" value="<?php echo  $user_data['movie_rating'] ?>">
+          <label for="floatingInput">Movie Rating</label>
+        </div>
+        <br>
+        <button class="w-100 btn btn-lg btn-primary" type="submit" name="submit1">Update</button>
+      </form>
 
-               <tr>
-                <td><?php echo $user_data['id']; ?></td>
-                <td><?php echo $user_data['emri']; ?></td>
-                <td><?php echo $user_data['username']; ?></td>
-                <td><?php echo $user_data['email']; ?></td>
-                <!-- If we want to update a user we need to link into editUsers.php -->
-                <td><a href="editUsers.php?id=<?= $user_data['id'];?>">Update</a></td>
-                  <!-- If we want to delete a user we need to link into deleteUsers.php -->
-                <td><a href="deleteUsers.php?id=<?= $user_data['id'];?>">Delete</a></td>
-              </tr>
-              
-           <?php  } ?>
-           
-            
-          </tbody>
-        </table>
+
       </div>
-     <?php  } else {
-      
-    } ?>
     </main>
   </div>
 </div>
