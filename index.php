@@ -64,12 +64,12 @@
     <h1 class="h3 mb-3 fw-normal">Register</h1>
 
     <div class="form-floating">
-      <input type="text" class="form-control" id="floatingInput" placeholder="emri" name="emri">
-      <label for="floatingInput">emri</label>
+      <input type="text" class="form-control" id="floatingInput" placeholder="Name" name="name">
+      <label for="floatingInput">Name</label>
     </div>
     <div class="form-floating">
-      <input type="text" class="form-control" id="floatingInput" placeholder="Username" name="username">
-      <label for="floatingInput">Username</label>
+      <input type="text" class="form-control" id="floatingInput" placeholder="Lastname" name="username">
+      <label for="floatingInput">Lastname</label>
     </div>
     <div class="form-floating">
       <input type="email" class="form-control" id="floatingInput" placeholder="Email" name="email">

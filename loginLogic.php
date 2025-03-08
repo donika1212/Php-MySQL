@@ -1,49 +1,84 @@
-<?php
+<?php 
+	/*Creating a session  based on a session identifier, passed via a GET or POST request.
+  We will include config.php for connection with database.
+  We will get the datas from login.php file and check if any of those datas is incorrect or doesn't exist
+   when Sign in button is clicked in login.php file
+  */
+	session_start();
 
-session_start();
+	include_once('config.php');
 
-include_once('config.php');
+	if(isset($_POST['submit']))
+	{
+		//We will collect username from form data after submitting an HTML form with method="post".
+		$username = $_POST['username'];
 
-if(isset($_POST["submit"])) {
+		//We will collect password from form data after submitting an HTML form with method="post".
+		$password = $_POST['password'];
 
-    $username = $_POST["username"];
-    $password = $_POST["password"];
+		//Check if any of username and password variables is empty
+		if (empty($username) || empty($password)) {
 
-    if(empty($username) || empty($password) ){
+			//If true, echo this message
+			echo "Please fill in all fields
+			";
 
-        echo "please fill all fields";
-    }else{
-        $sql = "SELECT id , emri, username, email, password ,confirm_password, is_admin FROM users where username = :username";
+		}
+		else{
 
-        $selectUsers = $conn->prepare($sql);
+			//If false, we will create a query to select id,emri,username,email,password,is_admin from users table based on each username
+			$sql = "SELECT id, name, username, email, password, is_admin FROM users WHERE username=:username";
 
-        $selectUsers->bindParam(":username",$username);
+			//We use prepared statement as a feature used to execute the same sql statement repeatedly with high efficiency
+			$selectUser = $conn->prepare($sql);
 
-        $selectUsers->execute();
+			//bindParam binds a parameter to the specified variable name, so we bind :username to $username variable
 
-        $data = $selectUsers ->fetch();
+			$selectUser->bindParam(":username", $username);
 
-        if($data == false) {
-            echo "the user does not exist";
-        }else {
+			/* At a later time, the application binds the values to the parameters, and the database executes the statement.
+			 The application may execute the statement as many times as it wants with different values */
 
-            if(password_verify($password,$data['password'])){
+			$selectUser->execute();
 
-                $_SESSION['id'] = $data['id'];
-                $_SESSION['name'] = $data['name'];
-                $_SESSION['username'] = $data['username'];
-                $_SESSION['email'] = $data['email'];
-                $_SESSION['is_admin'] = $data['is_admin'];
+			/*The fetch() method allows you to fetch a row from a result set associated with a PDOStatement object. Internally,
+			 the fetch() method fetches a single row from a result set and moves the internal pointer to the next row in the result set.*/
 
-                header('Location: dashboard.php');
-            }else {
-                echo "the password is not valid";
-            }
-        }
-    }
+			$data = $selectUser->fetch();
 
-}
+			//We will check if $data value(which in this case would be username) does not exist:
+			if ($data == false) {
+				
+
+				//If the condition is true, then we will echo this message
+				echo "The user does not exist
+				";
+			}else{
+
+					//If condition is not true, we will check if password in database matches the password that we wrote 
+				if (password_verify($password, $data['password'])) {
+					//If this condition is true, we will store $data values to $_SESSION variables
+					$_SESSION['id'] = $data['id'];
+					$_SESSION['username'] = $data['username'];
+					$_SESSION['email'] = $data['email'];
+					$_SESSION['name'] = $data['name'];
+					$_SESSION['is_admin'] = $data['is_admin'];
+
+					//And head to dashboard.php
+					header('Location: dashboard.php');
+				}
+				else{
+					//If the second condition is not true, then we will echo this message:
+					echo "The password is not valid
+					";
+				}
+
+			}
+
+		}
 
 
+	}
 
-?>
+
+ ?>

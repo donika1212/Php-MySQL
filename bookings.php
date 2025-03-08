@@ -1,5 +1,7 @@
 <?php 
-
+/*Creating a session  based on a session identifier, passed via a GET or POST request.
+  We will include config.php for connection with database.
+  */
 
 	 session_start();
    
@@ -9,6 +11,13 @@
 
    $user_id = $_SESSION['id'];
    
+/*
+If the user is admin we will fetch some datas from database and show them,
+ and if user is not admin we will fetch some data based on his id and show those datas. 
+ If the user is admin we will create a option to approve or decline a booking.
+ If we want to approve a booking we will create a link which will link us with approve.php file,
+  and if we want to decline we will create a link which will link us with decline.php file.
+*/
    if ($_SESSION['is_admin'] == 'true') {
 
      $sql = "SELECT movies.movie_name, users.email,bookings.id, bookings.nr_tickets, bookings.date,bookings.time FROM movies
@@ -188,4 +197,4 @@
 
 
  </body>
- </html>0.
+ </html>

@@ -120,8 +120,8 @@
           <thead>
             <tr>
               <th scope="col">Id</th>
-              <th scope="col">Emri</th>
-              <th scope="col">Username</th>
+              <th scope="col">Name</th>
+              <th scope="col">Lastname</th>
               <th scope="col">Email</th>
               <th scope="col">Update</th>
               <th scope="col">Delete</th>

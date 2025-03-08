@@ -1,5 +1,8 @@
 <?php 
- 
+ /*Creating a session  based on a session identifier, passed via a GET or POST request.
+  We will include config.php for connection with database.
+  We will fetch the data from database and show them, and create a form which will allow us to change the datas.
+  */
 
 	 session_start();
 
@@ -94,11 +97,11 @@
           <label for="floatingInput">Id</label>
         </div>
         <div class="form-floating">
-          <input type="text" class="form-control" id="floatingInput" placeholder="emri" name="emri" value="<?php echo  $user_data['emri'] ?>">
+          <input type="text" class="form-control" id="floatingInput" placeholder="Name" name="emri" value="<?php echo  $user_data['emri'] ?>">
           <label for="floatingInput">Name</label>
         </div>
         <div class="form-floating">
-          <input type="text" class="form-control" id="floatingInput" placeholder="username" name="username" value="<?php echo  $user_data['username'] ?>">
+          <input type="text" class="form-control" id="floatingInput" placeholder="Lastname" name="username" value="<?php echo  $user_data['username'] ?>">
           <label for="floatingInput">Lastname</label>
         </div>
         <div class="form-floating">

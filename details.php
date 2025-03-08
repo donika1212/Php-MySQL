@@ -1,6 +1,9 @@
 <?php 
-
- 
+  /*Creating a session  based on a session identifier, passed via a GET or POST request.
+  We will include config.php for connection with database.
+  We will get the data of films from database based on each films ids.
+  Creating a form which will post some of those datas into book.php file
+  */
 	session_start();
   
    include_once('config.php');
