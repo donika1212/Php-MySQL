@@ -1,52 +1,33 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "food-order1";
+include_once('config.php');
 
+if(isset($_POST['submit'])) {
+    $food_name = $_POST['food_name'];
+    $food_desc = $_POST['food_desc'];
+    $food_price = $_POST['food_price'];
+    $food_image = $_POST['food_image'];
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+    $sql = "INSERT INTO foods(food_name, food_desc, food_price, food_image) VALUES (:food_name, :food_desc, :food_price, :food_image)";
+    $insertFood = $conn->prepare($sql);
+    $insertFood->bindParam(':food_name', $food_name);
+    $insertFood->bindParam(':food_desc', $food_desc);
+    $insertFood->bindParam(':food_price', $food_price);
+    $insertFood->bindParam(':food_image', $food_image);
+    $insertFood->execute();
 
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    header("Location: foods.php");
 }
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $fullName = htmlspecialchars($_POST['full-name']);
-    $contact = htmlspecialchars($_POST['contact']);
-    $email = htmlspecialchars($_POST['email']);
-    $address = htmlspecialchars($_POST['address']);
-    $quantity = intval($_POST['qty']);
-    $foodTitle = "Food Title"; 
-    $price = 2.3;
-    $totalPrice = $price * $quantity;
-
-  
-    $stmt = $conn->prepare("INSERT INTO orders (full_name, contact, email, address, food_title, quantity, total_price) VALUES (?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssssid", $fullName, $contact, $email, $address, $foodTitle, $quantity, $totalPrice);
-
-    if ($stmt->execute()) {
-        echo "<script>alert('Order Confirmed! Thank you, $fullName.');</script>";
-    } else {
-        echo "<script>alert('Error placing order. Please try again.');</script>";
-    }
-
-    $stmt->close();
-}
-
-$conn->close();
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Restaurant Order</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Add Food</title>
+
+  
 </head>
 <body>
+    <!-- Navbar Section Starts Here -->
     <section class="navbar">
         <div class="container">
             <div class="logo">
@@ -54,52 +35,22 @@ $conn->close();
                     <img src="images/bestpica-removebg-preview.png" alt="Restaurant Logo" class="img-responsive">
                 </a>
             </div>
+
             <div class="menu text-right">
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="foods.php">Foods</a></li>
-                    <li><a href="index.php">Contact</a></li>
+                    <li>
+                        <a href="index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="foods.php">Foods</a>
+                    </li>
+                    <li>
+                        <a href="index.php">Contact</a>
+                    </li>
                 </ul>
             </div>
+
             <div class="clearfix"></div>
-        </div>
-    </section>
-
-    <section class="food-search">
-        <div class="container">
-            <h2 class="text-center text-white">Fill this form to confirm your order.</h2>
-            <form action="" method="POST" class="order">
-                <fieldset>
-                    <legend>Selected Food</legend>
-                    <div class="food-menu-img">
-                        <img src="images/menu-pizza.jpg" alt="Pizza" class="img-responsive img-curve">
-                    </div>
-                    <div class="food-menu-desc">
-                        <h3>Food Title</h3>
-                        <p class="food-price">$2.3</p>
-                        <div class="order-label">Quantity</div>
-                        <input type="number" name="qty" class="input-responsive" value="1" required>
-                    </div>
-                </fieldset>
-                <fieldset>
-                    <legend>Delivery Details</legend>
-                    <div class="order-label">Full Name</div>
-                    <input type="text" name="full-name" placeholder="E.g. Artiol Thaqi" class="input-responsive" required>
-                    <div class="order-label">Phone Number</div>
-                    <input type="tel" name="contact" placeholder="E.g. 9843xxxxxx" class="input-responsive" required>
-                    <div class="order-label">Email</div>
-                    <input type="email" name="email" placeholder="E.g. hi@artiolthaqi.com" class="input-responsive" required>
-                    <div class="order-label">Address</div>
-                    <textarea name="address" rows="10" placeholder="E.g. Street, City, Country" class="input-responsive" required></textarea>
-                    <input type="submit" name="submit" value="Confirm Order" class="btn btn-primary">
-                </fieldset>
-            </form>
-        </div>
-    </section>
-
-    <section class="footer">
-        <div class="container text-center">
-            <p>All rights reserved. Designed By <a href="#">Artiol Thaqi</a></p>
         </div>
     </section>
     <style>
@@ -210,7 +161,7 @@ fieldset{
 /* CSS for Food SEarch Section */
 
 .food-search{
-    background-image: url(images/bg.jpg);
+    background-image: url(../images/bg.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -359,5 +310,23 @@ fieldset{
 }
 
     </style>
+    <div class="container">
+        <h2>Add Food Item</h2>
+        <form action="" method="POST">
+            <label>Food Name:</label>
+            <input type="text" name="food_name" required>
+            
+            <label>Description:</label>
+            <input type="text" name="food_desc" required>
+            
+            <label>Price:</label>
+            <input type="number" step="0.01" name="food_price" required>
+            
+            <label>Image URL:</label>
+            <input type="text" name="food_image" required>
+            
+            <button type="submit" name="submit">Add Food</button>
+        </form>
+    </div>
 </body>
 </html>

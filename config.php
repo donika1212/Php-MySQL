@@ -1,24 +1,13 @@
 <?php
+$host = "localhost";  
+$dbname = "food-order1";
+$username = "root";  
+$password = "";  
 
-
-$user ="root";
-$pass ="";
-$host ="localhost";
-$dbname = "database1";
-
-
-try{
-    $conn = new PDO("mysql:host=$host;dbname=$dbname",$user,$pass);
-   
-}catch (Exeption $e) {
-    echo "Error:" .$e->getMessage(); 
-
+try {
+    $conn = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Connection failed: " . $e->getMessage());
 }
-
-
-
-
-
-
-
 ?>
