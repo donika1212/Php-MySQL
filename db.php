@@ -1,15 +1,7 @@
+
 <?php
-
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "clothing_store";
-
-
-$conn = new mysqli($localhost, $username, $password, $dbname);
-
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+$conn = mysqli_connect('localhost', 'root', '', 'clothing_store');
+if (!$conn) {
+    die("Database connection failed: " . mysqli_connect_error());
 }
 ?>

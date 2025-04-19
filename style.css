@@ -1,0 +1,42 @@
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background: #111;
+    color: #fff;
+    padding: 1em 2em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.hero {
+    background: url('images/clothes1.jpg') no-repeat center center/cover;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+
+.btn {
+    background: #ff4081;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 1em;
+}
