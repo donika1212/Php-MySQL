@@ -1,0 +1,476 @@
+/* Global styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:'Courier New', Courier, monospace
+}
+
+body {
+    background-color: #1a1a1a; /* Black background */
+    color: #fff; /* White text for better contrast */
+    font-size: 16px;
+}
+
+h1 {
+    text-align: center;
+    margin: 20px 0;
+    color: #fff;
+    font-size: 36px;
+    font-family: 'Courier New', Courier, monospace
+}
+
+/* Container for all pages */
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+/* Header */
+header {
+    background-color: #333;
+    color: white;
+    padding: 15px 0;
+    text-align: center;
+    font-size: 24px;
+    font-family: 'Courier New', Courier, monospace
+}
+
+/* Form styles */
+form {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #222; /* Darker background for form */
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #444; /* Darker border for inputs */
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #333; /* Dark background for input fields */
+    color: #fff; /* White text in inputs */
+}
+
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    border: none;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Car Display and Dashboard */
+.car-card {
+    display: inline-block;
+    width: 29.8%;
+    margin: 20px 1.5%;
+    padding: 20px;
+    background-color: #333; /* Dark card background */
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.car-card:hover {
+    transform: scale(1.05);
+}
+
+.car-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.car-card h2 {
+    font-size: 24px;
+    color: #fff; /* White text for car name */
+    margin: 10px 0;
+}
+
+.car-card p {
+    font-size: 18px;
+    color: #bbb; /* Lighter gray for description text */
+}
+
+.car-card a {
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    font-size: 18px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.car-card a:hover {
+    background-color: #218838;
+}
+
+/* Error and Success Messages */
+.error, .success {
+    padding: 10px;
+    text-align: center;
+    margin: 20px auto;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 5px;
+}
+
+.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.success {
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+    padding: 15px;
+    text-align: center;
+    font-size: 18px;
+    border-radius: 5px;
+    margin: 20px 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-out;
+}
+
+/* Animation for the success message */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Navbar */
+nav {
+    background-color: #333;
+    padding: 10px 0;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+nav a:hover {
+    color: #007BFF;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+}
+
+footer p {
+    font-size: 16px;
+}
+
+/* Dashboard Specific Styles */
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.dashboard-container h2 {
+    margin-bottom: 20px;
+    font-size: 28px;
+    color: #fff; /* White text for dashboard heading */
+}
+
+/* User Profile Styling */
+.user-profile {
+    width: 100%;
+    max-width: 600px;
+    background-color: #222; /* Dark profile background */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.user-profile h3 {
+    margin-bottom: 15px;
+    font-size: 24px;
+    color: #fff;
+}
+
+.user-profile p {
+    font-size: 18px;
+    color: #bbb; /* Lighter text for user profile details */
+    margin: 10px 0;
+}
+
+/* Dashboard Actions */
+.dashboard-actions {
+    margin-top: 20px;
+    text-align: center;
+    width: 100%;
+}
+
+.dashboard-actions h3 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #fff;
+}
+
+.dashboard-actions ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.dashboard-actions li {
+    font-size: 18px;
+    color: #bbb;
+    margin: 10px 0;
+}
+
+/* Available Cars Section */
+.dashboard-cars {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.dashboard-actions a {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    font-size: 18px;
+    border-radius: 5px;
+    margin: 5px;
+    text-decoration: none;
+}
+
+.dashboard-actions a:hover {
+    background-color: #0056b3;
+}
+
+/* Orders Table Styles */
+.orders-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+    background-color: #222;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.orders-container th, .orders-container td {
+    padding: 15px;
+    text-align: left;
+    font-size: 18px;
+}
+
+.orders-container th {
+    background-color: #007BFF;
+    color: white;
+}
+
+.orders-container tr:nth-child(even) {
+    background-color: #444; /* Darker even rows */
+}
+
+.orders-container tr:hover {
+    background-color: #555; /* Darker hover effect */
+}
+
+.orders-container td {
+    color: #bbb; /* Lighter text color */
+}
+
+.orders-container td a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+.orders-container td a:hover {
+    text-decoration: underline;
+}
+
+/* No Orders Message */
+.orders-container p {
+    font-size: 18px;
+    color: #bbb;
+    margin-top: 20px;
+}
+
+/* Style for delete button */
+.delete-btn {
+    background-color: #dc3545; /* Red background */
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+}
+
+/* Global styles */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Courier New', Courier, monospace
+}
+
+/* Main container to ensure full width and center */
+.container {
+    min-height: 100%; /* Ensure container takes full height */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Content should start from the top */
+    align-items: center; /* Center content horizontally */
+    width: 100%; /* Full width of the screen */
+}
+
+/* Header styling */
+header {
+    background-color: #333;
+    color: white;
+    padding: 15px 0;
+    width: 100%;
+    text-align: center;
+    font-size: 24px;
+}
+
+/* Form container to have proper alignment and full width without gaps */
+h1 {
+    text-align: center;
+    margin: 20px 0;
+    color: white;
+    font-size: 36px;
+}
+
+form {
+    max-width: 400px; /* Limit width */
+    margin: 20px auto;
+    padding: 20px;
+    background-color: rgb(38, 38, 39);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Ensure it uses full width of its container */
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    border: none;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* 'Already have an account?' section */
+.already-have-account {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.already-have-account a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+.already-have-account a:hover {
+    text-decoration: underline;
+}
+
+/* Footer should be pushed to the bottom */
+footer {
+    margin-top: auto; /* Ensures footer is at the bottom */
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    width: 100%; /* Ensure footer takes full width */
+}
+
+footer p {
+    font-size: 16px;
+}
+
+/* Container for orders page */
+.container-orders {
+    min-height: 100%; /* Full height but independent of footer */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Keeps table underneath header */
+    padding: 20px; /* Add padding around the content */
+    width: 100%; /* Full width */
+}
+
+/* Orders Table */
+.orders-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+    background-color: rgb(45, 45, 45);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px; /* Padding inside the table */
+}
+
+/* Add some margin inside the table */
+.orders-container th, .orders-container td {
+    padding: 15px;
+    text-align: left;
+    font-size: 18px;
+}
+
+/* Additional style to avoid text touching edges */
+.orders-container {
+    padding: 20px; /* Padding inside the container */
+}
