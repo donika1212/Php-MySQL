@@ -1,8 +1,7 @@
 <?php
-
+// login.php - User login
 include 'config.php';
 session_start();
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
@@ -12,19 +11,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
     
     if ($user && password_verify($password, $user['password'])) {
-
         $_SESSION['username'] = $user['username'];
-        $_SESSION['user_id'] = $user['id']; 
-
-       
         header("Location: merree.php");
         exit();
     } else {
-        echo "<p style='color: red; text-align: center;'>Invalid credentials. Please try again.</p>";
+        echo "Invalid credentials.";
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,87 +26,69 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <style>
+
+body {
+    background-image: url('images/backround2.jpg');
+    background-size: cover;  /* Ensures the image covers the entire screen */
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh; /* Makes sure the body is full height of the viewport */
+    margin: 0;     /* Removes any default margin */
+}
+
         body {
-            background-image: url('images/backround2.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            height: 100vh;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        .container {
-            width: 350px;
-            padding: 40px;
-            background: linear-gradient(135deg, rgba(82, 74, 74, 0.21), rgba(240, 240, 240, 0.9));
-            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
-            border-radius: 15px;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
             text-align: center;
-            backdrop-filter: blur(10px);
         }
-
+        .container {
+    width: 20%;
+    margin: auto;
+    padding: 20px;
+    background: linear-gradient(to right, #00bcd4, #ff9800); 
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    margin-top: 250px;
+    transition: all 0.3s ease; 
+}
+    .container:hover {
+    background: linear-gradient(to right, #ff9800, #00bcd4); 
+    transform: scale(1.05);
+}
         h1 {
-            color: #333;
-            margin-bottom: 20px;
-            font-size: 24px;
+            color: black;
         }
-
         form {
-            margin: 0;
+            margin: 20px 0;
         }
-
         input {
-            width: 100%;
-            padding: 12px;
-            margin: 12px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-            transition: border-color 0.3s;
-            font-size: 16px;
-        }
+    background: linear-gradient(90deg,rgb(228, 48, 48), #ffb6c1); 
+    color: #333; 
+    width: 100%; 
+    box-sizing: border-box; 
+}
 
-        input:focus {
-            border-color:rgb(0, 0, 0);
-            outline: none;
-        }
 
-        button {
-            width: 100%;
-            padding: 12px;
-            background: linear-gradient(45deg,rgb(0, 0, 0),rgb(0, 0, 0));
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 16px;
-            transition: background 0.3s;
-        }
+button {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    width: 100%; 
+    box-sizing: border-box;
+    font-weight: bold;
+}
 
-        button:hover {
-            background: linear-gradient(45deg,rgb(80, 73, 73),rgb(61, 54, 54));
-        }
 
-        .register-link {
-            margin-top: 20px;
-            font-size: 14px;
-            color: #555;
-        }
+button:hover {
+    background-color: #0056b3;
+}
 
-        .register-link a {
-            color: #007bff;
-            text-decoration: none;
-            font-weight: bold;
-        }
 
-        .register-link a:hover {
-            text-decoration: underline;
-        }
+input:focus {
+    border-color: #007bff; 
+    outline: none; 
+}
+
     </style>
 </head>
 <body>
@@ -123,9 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <input type="password" name="password" placeholder="Password" required><br>
             <button type="submit">Login</button>
         </form>
-        <div class="register-link">
-            <p>Don't have an account? <a href="register.php">Register here</a></p>
-        </div>
     </div>
 </body>
 </html>
+

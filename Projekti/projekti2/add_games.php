@@ -15,38 +15,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->execute([$name, $developer, $release_year, $genre, $price]);
     echo "Game added successfully.";
 }
-
-try {
-    
-    $games = [
-        ['Cyberpunk 2077', 'CD Projekt Red', 59.99],
-        ['Elden Ring', 'FromSoftware', 59.99],
-        ['Red Dead Redemption 2', 'Rockstar Games', 49.99],
-        ['The Witcher 3', 'CD Projekt Red', 39.99],
-        ['God of War', 'Santa Monica Studio', 49.99],
-        ['Minecraft', 'Mojang', 29.99],
-        ['Call of Duty: Modern Warfare', 'Infinity Ward', 59.99],
-        ['Assassins Creed Valhalla', 'Ubisoft', 49.99],
-        ['Spider-Man', 'Insomniac Games', 49.99],
-        ['Resident Evil 4 Remake', 'Capcom', 59.99]
-    ];
-
-   
-    $stmt = $pdo->prepare("INSERT INTO games (name, developer, price) VALUES (?, ?, ?)");
-
-    
-    foreach ($games as $game) {
-        $stmt->execute($game);
-    }
-
-    echo "Games added successfully!";
-} catch (PDOException $e) {
-    echo "Error: " . $e->getMessage();
-}
-
-
-header("Location: dashboard.php");
-exit();
 ?>
 <!DOCTYPE html>
 <html lang="en">

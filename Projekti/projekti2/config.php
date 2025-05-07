@@ -1,4 +1,5 @@
 <?php
+// config.php - Database configuration
 $host = 'localhost';
 $db   = 'mms';
 $user = 'root';
