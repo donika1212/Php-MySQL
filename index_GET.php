@@ -7,36 +7,33 @@
 </head>
 <body>
     
-   <form action="index_GET.php" method="get">
+    <form action="index_Get.php" method="get">
 
-   <label for="username">username:</label><br>
-   <input type="text" name="username" placeholder="username"><br>
-   <label for="Password">Password:</label><br>
-   <input type="Password" name="Password" placeholder="Password"><br><br>
-   <input type="submit" value="submit">
-
-
+    <label for="username">Username:</label>
+    <input type="text" name="username" placeholder="Username"><br>
+    <label for="username">Password:</label>
+    <input type="password" name="password" placeholder="password"><br><br>
+    <input type="submit" value="submit"><br><br>    
 
 
-   </form>
+
+
+    </form>
+
     <?php
 
-  $username = $_GET["username"];
-  $Password = $_GET["Password"];
+    $username = $_GET["username"];
+    $password = $_GET["password"];
 
+    echo $username;
 
-   echo $username;
+    echo "<br>";
 
-   echo "<br>";
-
-   echo $Password
-
-
+    echo $password;
 
 
 
-?>
-
+    ?>
 
 
 </body>
